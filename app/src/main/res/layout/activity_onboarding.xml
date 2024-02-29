@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.OnboardingActivity"
+    android:layout_gravity="center">
+
+    <ImageView
+        android:id="@+id/logo_onboarding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/logo"
+        tools:ignore="MissingConstraints"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"/>
+    <TextView
+        android:id="@+id/txt1_onboarding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chào mừng bạn đến với BA Lib"
+        tools:ignore="MissingConstraints"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:layout_marginTop="30dp"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:layout_below="@+id/logo_onboarding"/>
+    <ImageView
+        android:id="@+id/img_onboarding"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/img_onboarding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/txt1_onboarding"/>
+    <TextView
+        android:id="@+id/txt2_onboarding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hãy ấn vào ‘’Bắt đầu” để khám phá các chức năng ứng dụng thư viện Học viện Ngân Hàng"
+        android:layout_below="@+id/img_onboarding"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        />
+
+    <Button
+        android:id="@+id/submit_onboarding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/button"
+        android:text="Bắt đầu"
+        android:layout_alignParentBottom="true"/>
+
+
+</RelativeLayout>

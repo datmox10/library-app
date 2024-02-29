@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="bg_color">#FFD188</color>
+    <color name="bg_color_dark" tools:ignore="ReferenceType">@drawable/bg_color_dark</color>
+    <color name="text_color_dark">#A1752F</color>
+</resources>

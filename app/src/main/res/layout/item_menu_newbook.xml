@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:padding="10dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/item_menu_new_book">
+
+    <ImageView
+        android:id="@+id/img_book"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:srcCompat="@drawable/newbook" />
+
+    <TextView
+        android:id="@+id/title_book"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img_book"
+        android:paddingTop="10dp"
+        android:textSize="15dp"
+        android:text="TextView" />
+</RelativeLayout>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.BookDetailActivity">
+    <androidx.appcompat.widget.Toolbar
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="Chi tiết sách"
+        android:id="@+id/tool_bar_detail_book"
+        android:background="@color/bg_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </androidx.appcompat.widget.Toolbar>
+    <RelativeLayout
+        android:layout_below="@+id/tool_bar_detail_book"
+        android:id="@+id/layout_detail_book"
+        android:layout_width="match_parent"
+        android:padding="20dp"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="181dp"
+            android:layout_height="256dp"
+            tools:srcCompat="@tools:sample/avatars" />
+        <RelativeLayout
+            android:id="@+id/title_book"
+            android:paddingLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/img">
+            <TextView
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:id="@+id/txtid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/txtname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtid"
+                android:text="TextView" />
+
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_muon"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title_book"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_toEndOf="@+id/img"
+            android:background="@drawable/button"
+            android:gravity="center"
+            android:text="Mượn sách" />
+        <Button
+            android:id="@+id/btn_yeuthich"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_muon"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_toEndOf="@+id/img"
+            android:background="@drawable/button"
+            android:gravity="center"
+            android:text="Yêu thích" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/layout_detail_book"
+        android:id="@+id/info_book"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/title_info_book"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_color">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:paddingLeft="10dp"
+                android:text="Thông tin tài liệu"/>
+            <ImageButton
+                android:id="@+id/btn_arrow_info_book"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/ic_arrow_down"
+                android:layout_marginRight="10dp"
+                />
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/content_info_book"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_below="@+id/title_info_book"
+            android:text="xin chào các bạn"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rate_book"
+        android:padding="20dp"
+        android:layout_below="@+id/info_book"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/title_rate_book"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_color">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:paddingLeft="10dp"
+                android:text="Đánh giá của độc giả"/>
+            <ImageButton
+                android:id="@+id/btn_arrow_rate_book"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/ic_arrow_down"
+                android:layout_marginRight="10dp"
+                />
+        </RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:padding="10dp"
+            android:id="@+id/recycler_rate_book"
+            android:layout_below="@+id/title_rate_book"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/related_book"
+        android:padding="20dp"
+        android:layout_below="@+id/rate_book"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/title_related_book"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_color">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:paddingLeft="10dp"
+                android:text="Các tài liệu liên quan"/>
+            <ImageButton
+                android:id="@+id/btn_arrow_related_book"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/ic_arrow_down"
+                android:layout_marginRight="10dp"
+                />
+        </RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:padding="10dp"
+            android:id="@+id/recycler_related_book"
+            android:layout_below="@+id/title_related_book"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+</RelativeLayout>

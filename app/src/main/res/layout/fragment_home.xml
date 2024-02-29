@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.HomeFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.appcompat.widget.Toolbar
+            app:title="@string/trang_chu"
+            android:id="@+id/tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/bg_color"
+            app:logo="@drawable/baseline_menu_book_24"
+            app:titleMarginStart="30dp"
+            app:menu="@menu/home_toolbar"/>
+
+        <RelativeLayout
+            android:id="@+id/layout_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tool_bar"
+            android:background="@drawable/layout_radius_top">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/slide" />
+            <RelativeLayout
+                android:id="@+id/layout_menu"
+                android:layout_below="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_margin="20dp"
+                android:background="@drawable/layout_radius"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/title_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:paddingBottom="10dp"
+                    android:text="Tiện ích">
+
+                </TextView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/title_menu"
+                    android:paddingBottom="20dp">
+
+                </androidx.recyclerview.widget.RecyclerView>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/layout_new_book"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_menu"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                >
+                <RelativeLayout
+                    android:id="@+id/line_new_book"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/bg_color"
+                    >
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/new_book"
+                    android:layout_below="@+id/line_new_book"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp">
+                    <TextView
+                        android:id="@+id/title_new_book"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:text="Sách mới" />
+
+                    <Button
+                        android:id="@+id/btn_new_book"
+                        android:layout_alignParentEnd="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Xem thêm"
+                        android:textSize="10dp"
+                        android:background="@android:color/transparent"
+                        android:textColor="@color/bg_color"/>
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_new_book"
+                    android:layout_below="@id/new_book"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                </androidx.recyclerview.widget.RecyclerView>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_hot_book"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_new_book"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                >
+                <RelativeLayout
+                    android:id="@+id/line_hot_book"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/bg_color"
+                    >
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/hot_book"
+                    android:layout_below="@+id/line_hot_book"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp">
+                    <TextView
+                        android:id="@+id/title_hot_book"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:text="Sách hot" />
+
+                    <Button
+                        android:id="@+id/btn_hot_book"
+                        android:layout_alignParentEnd="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Xem thêm"
+                        android:textSize="10dp"
+                        android:background="@android:color/transparent"
+                        android:textColor="@color/bg_color"/>
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_hot_book"
+                    android:layout_below="@id/hot_book"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                </androidx.recyclerview.widget.RecyclerView>
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+    </ScrollView>
+</FrameLayout>
