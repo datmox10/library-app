@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/logo"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="-50dp"
         />
 
@@ -20,9 +21,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/logo_splash"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
         android:paddingTop="20dp"
-        android:textSize="30dp"
-        android:textStyle="bold"
+        android:text="BA_LIB"
         android:textColor="@color/bg_color"
-        android:text="BA_LIB" />
+        android:textSize="30dp"
+        android:textStyle="bold" />
 </RelativeLayout>

@@ -13,6 +13,15 @@ public class Sach {
     int namXuatBan;
     String noiXuatBan;
     String anh;
+    String phanloai;
+
+    public String getPhanloai() {
+        return phanloai;
+    }
+
+    public void setPhanloai(String phanloai) {
+        this.phanloai = phanloai;
+    }
 
     public String getAnh() {
         return anh;

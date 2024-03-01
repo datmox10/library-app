@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toolbar;
 
 import com.library.app.R;
 import com.library.app.adapter.DichVuAdapter;
@@ -31,6 +32,7 @@ public class HomeFragment extends Fragment {
 
     private DichVuAdapter dichVuAdapter;
     private MenuSachAdapter menuSachAdapter;
+    private Toolbar toolbar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +43,7 @@ public class HomeFragment extends Fragment {
         getDichVu();
         getNewBook();
         getHotBook();
+
         return view;
     }
 
@@ -49,6 +52,7 @@ public class HomeFragment extends Fragment {
         recyclerNewBook = view.findViewById(R.id.recycler_new_book);
         recyclerHotBook = view.findViewById(R.id.recycler_hot_book);
     }
+
     private void getDichVu(){
         ArrayList<DichVu> dichVus = new ArrayList<>();
         dichVus.add(new DichVu("Đặt phòng", getResources().getDrawable(R.drawable.ic_reservations)));

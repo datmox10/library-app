@@ -11,15 +11,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.appcompat.widget.Toolbar
-            app:title="@string/trang_chu"
             android:id="@+id/tool_bar"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@color/bg_color"
-            app:logo="@drawable/baseline_menu_book_24"
-            app:titleMarginStart="30dp"
-            app:menu="@menu/home_toolbar"/>
+            app:menu="@menu/home_toolbar"
+            app:navigationIcon="@mipmap/ic_logo_tool_background"
+            app:title="@string/trang_chu" />
 
         <RelativeLayout
             android:id="@+id/layout_home"

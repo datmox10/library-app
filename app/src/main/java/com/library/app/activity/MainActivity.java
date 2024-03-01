@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(new UserFragment());
 
             }
-            if(item.getItemId() == R.id.abc){
-                binding.bottomNavView.getMenu().findItem(R.id.abc).setChecked(true);
+            if(item.getItemId() == R.id.notify){
+                binding.bottomNavView.getMenu().findItem(R.id.notify).setChecked(true);
                 replaceFragment(new NotifyFragment());
 
             }

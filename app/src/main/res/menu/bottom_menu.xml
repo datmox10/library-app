@@ -14,13 +14,9 @@
     <item android:id="@+id/qrcode"
         android:title=""/>
 
-<!--    <item android:id="@+id/library"-->
-<!--        android:title="Library"-->
-<!--        android:icon="@drawable/ic_library"/>-->
-
-    <item android:id="@+id/abc"
-        android:title="abc"
-        android:icon="@drawable/ic_add"/>
+    <item android:id="@+id/notify"
+        android:title="Thông báo"
+        android:icon="@drawable/ic_notify"/>
 
     <item android:id="@+id/user"
         android:title="Cá nhân"
