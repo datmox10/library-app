@@ -1,15 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/text_color_dark"
-    tools:context=".fragment.UserFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.UserFragment"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_color"
+        app:title="Thông tin cá nhân"/>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_item_user"
+            android:gravity="center"
+            android:orientation="vertical">
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/user_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/slide"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+            <TextView
+                android:id="@+id/user_name"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Họ và tên"/>
+            <TextView
+                android:id="@+id/user_masinhvien"
+                android:layout_width="wrap_content"
+                android:textSize="16dp"
+                android:layout_height="wrap_content"
+                android:text="Mã sinh viên"/>
+        </LinearLayout>
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/bg_item_user"
+            android:orientation="vertical">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:text="Sách đã đọc"
+                android:drawableStart="@drawable/ic_notify"
+                android:textColor="@color/black"
+                />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:text="Lịch sử mượn sách"
+                android:textColor="@color/black"
+                />
+            <Button
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:text="Lịch sử mượn sách"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

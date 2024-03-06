@@ -3,13 +3,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_orange_dark"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.NotifyFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_color"
+            app:title="Thông báo"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btn_all_notify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_radius_left_click"
+                    app:backgroundTint="@color/bg_color"
+                    android:layout_weight="1"
+                    android:text="Tất cả"
+                    android:textColor="@color/black"/>
+
+                <Button
+                    android:id="@+id/btn_read_notify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_radius_right_notclick"
+                    app:backgroundTint="@color/btn_notclick"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:text="Đã đọc" />
+            </LinearLayout>
+            <FrameLayout
+                android:id="@+id/frame_layout_notify"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </FrameLayout>
+        </LinearLayout>
+
+    </LinearLayout>
 
 </FrameLayout>
