@@ -4,7 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     tools:context=".fragment.UserFragment"
+    >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
@@ -16,37 +24,44 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <LinearLayout
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:background="@drawable/bg_item_user"
-            android:gravity="center"
-            android:orientation="vertical">
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/user_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/slide"
-                app:civ_border_width="2dp"
-                app:civ_border_color="#FF000000"/>
-            <TextView
-                android:id="@+id/user_name"
-                android:textSize="25dp"
-                android:textStyle="bold"
+            android:gravity="center">
+            <LinearLayout
+                android:id="@+id/user_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Họ và tên"/>
-            <TextView
-                android:id="@+id/user_masinhvien"
-                android:layout_width="wrap_content"
-                android:textSize="16dp"
-                android:layout_height="wrap_content"
-                android:text="Mã sinh viên"/>
-        </LinearLayout>
+                android:gravity="center"
+                android:orientation="vertical">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/user_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/user"/>
+                <TextView
+                    android:id="@+id/user_name"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Họ và tên"/>
+                <TextView
+                    android:id="@+id/user_masinhvien"
+                    android:layout_width="wrap_content"
+                    android:textSize="16dp"
+                    android:layout_height="wrap_content"
+                    android:text="Mã sinh viên"/>
+            </LinearLayout>
+        </RelativeLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,29 +71,317 @@
             android:layout_marginRight="10dp"
             android:background="@drawable/bg_item_user"
             android:orientation="vertical">
-            <Button
+            <LinearLayout
+                android:id="@+id/user_book_read"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:background="@android:color/transparent"
                 android:text="Sách đã đọc"
-                android:drawableStart="@drawable/ic_notify"
+                android:gravity="start"
+                android:paddingLeft="20dp"
                 android:textColor="@color/black"
-                />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:text="Lịch sử mượn sách"
-                android:textColor="@color/black"
-                />
-            <Button
-                android:background="@android:color/transparent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@color/black"
-                android:text="Lịch sử mượn sách"
-                />
-        </LinearLayout>
-    </LinearLayout>
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:padding="5dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/sachdadoc"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sách đã đọc"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:paddingLeft="20dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:background="@android:color/transparent"
 
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/user_borrow"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/transparent"
+                android:text="Sách đã đọc"
+                android:gravity="start"
+                android:paddingLeft="20dp"
+                android:textColor="@color/black"
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:padding="5dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/lichsu"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lịch sử mượn sách"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:paddingLeft="20dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:background="@android:color/transparent"
+
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/user_favorite"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/transparent"
+                android:text="Sách đã đọc"
+                android:gravity="start"
+                android:paddingLeft="20dp"
+                android:textColor="@color/black"
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:padding="5dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/yeuthich"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sách yêu thích"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:paddingLeft="20dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:background="@android:color/transparent"
+
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/user_booking"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/transparent"
+                android:text="Sách đã đọc"
+                android:gravity="start"
+                android:paddingLeft="20dp"
+                android:textColor="@color/black"
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:padding="5dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/datphong"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đặt phòng đọc"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:paddingLeft="20dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:background="@android:color/transparent"
+
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/user_print"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/transparent"
+                android:text="Sách đã đọc"
+                android:gravity="start"
+                android:paddingLeft="20dp"
+                android:textColor="@color/black"
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:padding="5dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/khoaluan"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="In khóa luận"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:paddingLeft="20dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:background="@android:color/transparent"
+
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/user_punish"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/transparent"
+                android:text="Sách đã đọc"
+                android:gravity="start"
+                android:paddingLeft="20dp"
+                android:textColor="@color/black"
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:padding="5dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/lichsuphat"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lịch sử phạt"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:paddingLeft="20dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:background="@android:color/transparent"
+
+                    />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/user_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/bg_item_user"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/transparent"
+                android:text="Sách đã đọc"
+                android:gravity="start"
+                android:paddingLeft="20dp"
+                android:textColor="@color/black"
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:padding="10dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/gopy"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Góp ý"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:paddingLeft="20dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/user_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/bg_item_user"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/transparent"
+                android:text="Sách đã đọc"
+                android:gravity="start"
+                android:paddingLeft="20dp"
+                android:textColor="@color/black"
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:padding="10dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_logout"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đăng xuất"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:paddingLeft="20dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/transparent"
+                android:text="Sách đã đọc"
+                android:gravity="start"
+                android:paddingLeft="20dp"
+                android:textColor="@color/black"
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:padding="10dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:paddingLeft="20dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
+    </ScrollView>
 </LinearLayout>

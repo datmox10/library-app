@@ -55,8 +55,9 @@ public class HomeFragment extends Fragment {
 
     private void getDichVu(){
         ArrayList<DichVu> dichVus = new ArrayList<>();
-        dichVus.add(new DichVu("Đặt phòng", getResources().getDrawable(R.drawable.ic_reservations)));
-        dichVus.add(new DichVu("Đặt phòng",getResources().getDrawable(R.drawable.ic_reservations)));
+        dichVus.add(new DichVu("Đặt phòng", getResources().getDrawable(R.drawable.datphong)));
+        dichVus.add(new DichVu("Yêu thích",getResources().getDrawable(R.drawable.yeuthich)));
+        dichVus.add(new DichVu("Khóa luận",getResources().getDrawable(R.drawable.khoaluan)));
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
         recyclerMenu.setLayoutManager(linearLayoutManager);

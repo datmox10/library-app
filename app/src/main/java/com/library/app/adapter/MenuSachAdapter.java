@@ -85,7 +85,6 @@ public class MenuSachAdapter extends RecyclerView.Adapter<MenuSachAdapter.MenuSa
                     bundle.putString("anh", listSach.get(getPosition()).getAnh().toString());
                     intent.putExtras(bundle);
                     context.startActivity(intent);
-
                 }
             });
 
