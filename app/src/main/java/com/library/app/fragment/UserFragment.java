@@ -70,7 +70,7 @@ public class UserFragment extends Fragment {
         userBookRead = view.findViewById(R.id.user_book_read);
         circleImageView = view.findViewById(R.id.user_image);
         userPrint = view.findViewById(R.id.user_print);
-        userBorrowHistory = view.fin      dViewById(R.id.user_borrow);
+        userBorrowHistory = view.findViewById(R.id.user_borrow);
     }
 
 
