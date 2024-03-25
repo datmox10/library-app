@@ -7,15 +7,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.library.app.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ThesisFragment#newInstance} factory method to
+ * Use the {@link BookingFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ThesisFragment extends Fragment {
+public class BookingFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +27,7 @@ public class ThesisFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public ThesisFragment() {
+    public BookingFragment() {
         // Required empty public constructor
     }
 
@@ -36,11 +37,11 @@ public class ThesisFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ThesisFragment.
+     * @return A new instance of fragment BookingFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ThesisFragment newInstance(String param1, String param2) {
-        ThesisFragment fragment = new ThesisFragment();
+    public static BookingFragment newInstance(String param1, String param2) {
+        BookingFragment fragment = new BookingFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +62,9 @@ public class ThesisFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.activity_thesis2, container, false);
+        return inflater.inflate(R.layout.activity_booking, container, false);
     }
+
+
+
 }

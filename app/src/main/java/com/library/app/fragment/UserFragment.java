@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.library.app.R;
+import com.library.app.activity.BookingActivity;
 import com.library.app.activity.BorrowHistoryActivity;
 import com.library.app.activity.MainActivity;
 import com.library.app.activity.ThesisActivity;
@@ -26,6 +27,7 @@ public class UserFragment extends Fragment {
     private LinearLayout userBookRead;
     private LinearLayout userPrint;
     private LinearLayout userBorrowHistory;
+    private LinearLayout userBooking;
     private CircleImageView circleImageView;
 
     @Override
@@ -41,7 +43,6 @@ public class UserFragment extends Fragment {
                 Intent intent;
                 intent = new Intent(getActivity(), UserDetails.class);
                 startActivity(intent);
-
             }
         });
 
@@ -63,6 +64,15 @@ public class UserFragment extends Fragment {
             }
         });
 
+        userBooking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent;
+                intent = new Intent(getActivity(), BookingActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
@@ -71,6 +81,7 @@ public class UserFragment extends Fragment {
         circleImageView = view.findViewById(R.id.user_image);
         userPrint = view.findViewById(R.id.user_print);
         userBorrowHistory = view.findViewById(R.id.user_borrow);
+        userBooking = view.findViewById(R.id.user_booking);
     }
 
 
