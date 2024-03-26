@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+
+            <Spinner
+                android:id="@+id/spinner_sorter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
+
+        <!--ITEM 1-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            >
+
+            <ImageView
+                android:id="@+id/img_item_borrow_book"
+                android:layout_width="140dp"
+                android:layout_height="120dp"
+                android:src="@drawable/newbook"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+
+                <TextView
+                    android:id="@+id/img_item_borrow_title_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Xác suất &amp; Thống kế Toán"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    />
+
+                <TextView
+                    android:id="@+id/img_item_borrow_title_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đã mượn: 14"
+                    android:textSize="14sp"
+                    android:textColor="@color/bg_color"
+                    />
+
+                <TextView
+                    android:id="@+id/img_item_borrow_title_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Số lượng: 1"
+                    android:textSize="14sp"
+                    android:textColor="@color/bg_color"
+
+                    />
+
+                <TextView
+                    android:id="@+id/img_item_borrow_title_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ngày mượn: 9h20, 01/02/2023"
+                    android:textSize="14sp"
+                    android:textColor="@color/bg_color"
+                    />
+
+                <TextView
+                    android:id="@+id/img_item_borrow_title_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tình trạng: Chưa trả"
+                    android:textSize="14sp"
+                    android:textColor="@color/bg_color"
+
+
+                    />
+
+                <TextView
+                    android:id="@+id/img_item_borrow_title_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*Còn lại: 3 ngày"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <!--    ITEM 2-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            >
+
+            <ImageView
+                android:id="@+id/img_item_borrow_book_1"
+                android:layout_width="140dp"
+                android:layout_height="120dp"
+                android:src="@drawable/newbook"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:id="@+id/img_item_borrow_title1_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Xác suất &amp; Thống kế Toán"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    />
+
+                <TextView
+                    android:id="@+id/img_item_borrow_title1_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đã mượn: 14"
+                    android:textSize="14sp"
+                    android:textColor="@color/bg_color"
+                    />
+
+                <TextView
+                    android:id="@+id/img_item_borrow_title1_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Số lượng: 1"
+                    android:textSize="14sp"
+                    android:textColor="@color/bg_color"
+
+                    />
+
+                <TextView
+                    android:id="@+id/img_item_borrow_title1_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ngày mượn: 9h20, 01/02/2023"
+                    android:textSize="14sp"
+                    android:textColor="@color/bg_color"
+                    />
+
+                <TextView
+                    android:id="@+id/img_item_borrow_title1_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tình trạng: Chưa trả"
+                    android:textSize="14sp"
+                    android:textColor="@color/bg_color"
+
+                    />
+
+                <TextView
+                    android:id="@+id/img_item_borrow_title1_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*Còn lại: 3 ngày"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <!--        ITEM 3-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            >
+
+            <ImageView
+                android:id="@+id/img_item_borrow_book_3"
+                android:layout_width="140dp"
+                android:layout_height="120dp"
+                android:src="@drawable/newbook"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:id="@+id/img_item_borrow_title2_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cơ sở dữ liệu"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    />
+
+                <TextView
+                    android:id="@+id/img_item_borrow_title2_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đã mượn: 2983"
+                    android:textSize="14sp"
+                    android:textColor="@color/bg_color"
+                    />
+
+                <TextView
+                    android:id="@+id/img_item_borrow_title2_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Số lượng: 1"
+                    android:textSize="14sp"
+                    android:textColor="@color/bg_color"
+
+                    />
+
+                <TextView
+                    android:id="@+id/img_item_borrow_title2_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ngày mượn: 9h20, 01/02/2023"
+                    android:textSize="14sp"
+                    android:textColor="@color/bg_color"
+                    />
+
+                <TextView
+                    android:id="@+id/img_item_borrow_title2_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tình trạng: Đã trả ngày 05/02/2024"
+                    android:textSize="14sp"
+                    android:textColor="@color/bg_color"
+
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>

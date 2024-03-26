@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         binding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceFragment(new HomeFragment());
+                replaceFragment(new QrcodeFragment());
                 binding.bottomNavView.getMenu().findItem(R.id.qrcode).setChecked(true);
 //                binding.floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(255,209,136)));
                 ViewCompat.setBackgroundTintList(binding.floatingActionButton, ColorStateList.valueOf(Color.rgb(0,0,0)));

@@ -26,7 +26,7 @@ public class OnboardingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mySharedPreferences.putBooleanValue(KEY_FIRST_INSTALL,true);
-                startActivity(MainActivity.class);
+                startActivity(LoginActivity.class);
             }
         });
 

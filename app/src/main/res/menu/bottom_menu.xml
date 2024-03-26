@@ -17,8 +17,6 @@
 
     <item android:id="@+id/notify"
         android:title="Thông báo"
-        android:actionLayout="@layout/custom_notify_layout"
-        android:visible="true"
         android:icon="@drawable/ic_notify"/>
 
     <item android:id="@+id/user"

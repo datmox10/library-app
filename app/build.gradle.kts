@@ -43,5 +43,7 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.8")
     implementation ("de.hdodenhof:circleimageview:3.1.0")
     implementation ("com.github.barteksc:android-pdf-viewer:2.8.2")
-    implementation ("me.dm7.barcodescanner:zxing:1.9.8")
+    implementation ("com.google.zxing:core:3.3.0")
+    implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+
 }

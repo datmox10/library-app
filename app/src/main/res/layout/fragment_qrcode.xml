@@ -1,14 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.QrcodeFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <Toolbar
+        android:id="@+id/toolbar_qrcode"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="qr code" />
+        android:layout_height="wrap_content"
+        android:background="@color/bg_color"
+        android:title="Quét mã vạch"
+        />
+    <RelativeLayout
+        android:id="@+id/contant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar_qrcode"
+        >
+        <ImageView
+            android:src="@mipmap/ic_launcher"
+            android:layout_centerHorizontal="true"
 
-</FrameLayout>
+            android:layout_marginTop="20dp"
+            android:id="@+id/imageCode"
+            android:layout_width="200dp"
+            android:layout_height="200dp"/>
+        <TextView
+            android:text="Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_below="@+id/imageCode"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/contant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:text="QR Code"
+            android:id="@+id/btn_QRcode"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
+            android:text="Barcode"
+            android:textColor="@color/black"
+            android:id="@+id/btn_Barcode"/>
+    </LinearLayout>
+
+</RelativeLayout>
+
