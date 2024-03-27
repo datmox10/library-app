@@ -13,7 +13,7 @@ import retrofit2.http.POST;
 public interface ApiGPT {
     @Headers(
             {"Content-Type: application/json",
-                    "Authorization: Bearer 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"
+                    "Authorization: Bearer $KEY_API"
             }
     )
     @POST("chat/ompletions")
