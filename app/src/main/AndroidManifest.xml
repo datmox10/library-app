@@ -20,6 +20,12 @@
         android:theme="@style/Theme.App"
         tools:targetApi="31">
         <activity
+            android:name=".activity.AIBookChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AIBook"
+            android:exported="false" />
+        <activity
             android:name=".activity.BorrowHistoryActivity"
             android:exported="false" />
         <activity

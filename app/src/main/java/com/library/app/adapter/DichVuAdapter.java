@@ -1,16 +1,21 @@
 package com.library.app.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.library.app.R;
+import com.library.app.activity.AIBook;
+import com.library.app.activity.BookingActivity;
 import com.library.app.model.DichVu;
 
 import java.util.ArrayList;
@@ -38,12 +43,22 @@ public class DichVuAdapter extends RecyclerView.Adapter<DichVuAdapter.DichVuView
         if(dichVu==null){
             return;
         }
-
 //        Picasso.get()
 //                .load(playlist.getHinh())
 //                .into(holder.img);
         holder.imageView.setImageDrawable(dichVu.getAnhDichVu());
         holder.textView.setText(dichVu.getTenDichVu());
+            holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(dichVu.getId() == 1){
+                        startActivity(BookingActivity.class);
+                    }
+                    if(dichVu.getId() == 4){
+                        startActivity(AIBook.class);
+                    }
+                }
+            });
     }
 
     @Override
@@ -58,11 +73,17 @@ public class DichVuAdapter extends RecyclerView.Adapter<DichVuAdapter.DichVuView
 
         private ImageView imageView;
         private TextView textView;
+        private RelativeLayout relativeLayout;
         public DichVuViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            relativeLayout = itemView.findViewById(R.id.layout_dv);
             imageView =itemView.findViewById(R.id.img_menu);
             textView = itemView.findViewById(R.id.title_menu);
         }
+    }
+    private void startActivity(Class<?> cls){
+        Intent intent = new Intent(context,cls);
+        context.startActivity(intent);
+        ((Activity)context).finish();
     }
 }
