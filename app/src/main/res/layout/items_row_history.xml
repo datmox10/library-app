@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/room_name_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="P3.302"
+        android:drawableEnd="@drawable/divider_table_cell"
+        />
+
+    <TextView
+        android:id="@+id/room_time_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Thứ ba,24/01/2023"
+        android:drawableEnd="@drawable/divider_table_cell"
+        />
+
+    <TextView
+        android:id="@+id/room_info_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Văn Nam"/>
+
+
+
+
+</LinearLayout>

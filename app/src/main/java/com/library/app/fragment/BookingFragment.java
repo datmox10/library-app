@@ -1,15 +1,19 @@
 package com.library.app.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.library.app.R;
+import com.library.app.activity.BookingConfirmActivity;
+import com.library.app.activity.UserDetails;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,6 +21,8 @@ import com.library.app.R;
  * create an instance of this fragment.
  */
 public class BookingFragment extends Fragment {
+    private View view;
+    private Button bookingConfirmBtn;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,9 +68,23 @@ public class BookingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.activity_booking, container, false);
+        view = inflater.inflate(R.layout.fragment_booking, container, false);
+        Log.d( "TAG", "onButtonClick");
+
+        anhXa();
+        bookingConfirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent;
+                intent = new Intent(getActivity(), BookingConfirmActivity.class);
+                Log.d( "TAG", "onButtonClick");
+                startActivity(intent);
+            }
+        });
+        return view;
     }
 
-
-
+    private void anhXa(){
+        bookingConfirmBtn = view.findViewById(R.id.book_now_btn_1);
+    }
 }

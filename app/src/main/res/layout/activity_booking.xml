@@ -404,6 +404,7 @@
                 android:background="@color/light_bg"
                 >
                 <Button
+                    android:id="@+id/book_now_btn_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
@@ -691,6 +692,7 @@
                 android:background="@color/light_bg"
                 >
                 <Button
+                    android:id="@+id/book_now_btn_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"

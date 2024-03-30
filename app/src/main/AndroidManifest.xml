@@ -17,6 +17,15 @@
         android:theme="@style/Theme.App"
         tools:targetApi="31">
         <activity
+            android:name=".activity.RoomBookingHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.RoomBookingDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.BookingConfirmActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.BookingActivity"
             android:exported="false" />
         <activity

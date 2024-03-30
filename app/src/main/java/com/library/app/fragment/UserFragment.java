@@ -84,6 +84,4 @@ public class UserFragment extends Fragment {
         userBooking = view.findViewById(R.id.user_booking);
     }
 
-
-
 }
