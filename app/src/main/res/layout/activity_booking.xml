@@ -518,7 +518,7 @@
                     android:gravity="center"
                     android:layout_margin="4dp"/>
 
-                />
+ 
 
                 <TextView
                     android:layout_width="0dp"
@@ -531,7 +531,7 @@
                     android:gravity="center"
                     android:layout_margin="4dp"/>
 
-                />
+ 
 
                 <TextView
                     android:layout_width="0dp"
@@ -544,7 +544,7 @@
                     android:gravity="center"
                     android:layout_margin="4dp"/>
 
-                />
+ 
 
                 <TextView
                     android:layout_width="0dp"
@@ -557,7 +557,7 @@
                     android:gravity="center"
                     android:layout_margin="4dp"/>
 
-                />
+ 
 
                 <TextView
                     android:layout_width="0dp"
@@ -570,7 +570,7 @@
                     android:gravity="center"
                     android:layout_margin="4dp"/>
 
-                />
+ 
 
                 <TextView
                     android:layout_width="0dp"
@@ -583,7 +583,7 @@
                     android:gravity="center"
                     android:layout_margin="4dp"/>
 
-                />
+ 
 
             </LinearLayout>
 
@@ -610,7 +610,6 @@
                     android:gravity="center"
                     android:layout_margin="4dp"/>
 
-                />
 
                 <TextView
                     android:layout_width="0dp"
@@ -623,7 +622,6 @@
                     android:gravity="center"
                     android:layout_margin="4dp"/>
 
-                />
 
                 <TextView
                     android:layout_width="0dp"
@@ -636,7 +634,6 @@
                     android:gravity="center"
                     android:layout_margin="4dp"/>
 
-                />
 
                 <TextView
                     android:layout_width="0dp"
@@ -649,7 +646,6 @@
                     android:gravity="center"
                     android:layout_margin="4dp"/>
 
-                />
 
                 <TextView
                     android:layout_width="0dp"
@@ -662,7 +658,6 @@
                     android:gravity="center"
                     android:layout_margin="4dp"/>
 
-                />
 
                 <TextView
                     android:layout_width="0dp"
@@ -675,7 +670,6 @@
                     android:gravity="center"
                     android:layout_margin="4dp"/>
 
-                />
 
             </LinearLayout>
 
