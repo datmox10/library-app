@@ -31,7 +31,7 @@ public class QrcodeFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_qrcode, container, false);
         anhXa();
 
-        btnQrcode.setOnClickListener(new View.OnClickListener() {
+        btnBarcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onButtonClick(v);

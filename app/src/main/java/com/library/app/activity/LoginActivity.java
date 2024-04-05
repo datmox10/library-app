@@ -57,15 +57,12 @@ public class LoginActivity extends AppCompatActivity {
         String account = editTaikhoan.getText().toString().trim();
         String password = editPassword.getText().toString().trim();
         int test = 0;
-        Log.d( "login: ", getUser().get(0).getAccount());
-        Log.d( "login1: ", getUser().get(0).getPassword());
 
-        Log.d( "login: ", account);
-        Log.d( "login1: ", password);
        for(User user: getUser()){
             if(user.getAccount().trim().equals(account) && user.getPassword().trim().equals(password)){
                 SharedPreferences sharedPreferences = getSharedPreferences(USER_LOGIN,MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("usercode", user.getUserCode());
                 editor.putString("account",account);
                 editor.putString("password",password);
                 editor.putString("name",user.getName());
