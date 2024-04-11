@@ -15,6 +15,7 @@ import android.widget.Toolbar;
 import com.library.app.R;
 import com.library.app.adapter.DichVuAdapter;
 import com.library.app.adapter.MenuSachAdapter;
+import com.library.app.api.HandlerBookTraining;
 import com.library.app.model.DichVu;
 import com.library.app.model.Sach;
 
@@ -34,6 +35,8 @@ public class HomeFragment extends Fragment {
     private MenuSachAdapter menuSachAdapter;
     private Toolbar toolbar;
 
+    HandlerBookTraining handlerBookTraining = new HandlerBookTraining();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,7 +46,7 @@ public class HomeFragment extends Fragment {
         getDichVu();
         getNewBook();
         getHotBook();
-
+        handlerBookTraining.getAllBookTraining();
         return view;
     }
 

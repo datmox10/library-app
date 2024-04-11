@@ -11,14 +11,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.library.app.R;
 import com.library.app.adapter.AIBookAdapter;
 import com.library.app.adapter.MenuSachAdapter;
+import com.library.app.api.HandlerBookTraining;
+import com.library.app.dto.BookTrainingResponse;
 import com.library.app.model.Sach;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AIBook extends AppCompatActivity {
 
@@ -65,36 +69,15 @@ public class AIBook extends AppCompatActivity {
 
         private void getBook(){
             ArrayList<Sach> sachs = new ArrayList<>();
-            Sach sach1 = new Sach();
-            sach1.setSoISBN("1");
-            sach1.setNhanDeChinh("Advanced C");
-            sach1.setTacGia("Mạnh Đạt");
-            sach1.setAnh("R.drawable.newbook");
-            Sach sach2 = new Sach();
-            sach2.setSoISBN("2");
-            sach2.setNhanDeChinh("Advanced D");
-            sach1.setTacGia("Mạnh Đạt");
-            sach2.setAnh("R.drawable.newbook");
-            Sach sach3 = new Sach();
-            sach3.setSoISBN("2");
-            sach1.setTacGia("Mạnh Đạt");
-            sach3.setNhanDeChinh("Advanced D");
-            sach3.setAnh("R.drawable.newbook");
-            Sach sach4 = new Sach();
-            sach4.setSoISBN("2");
-            sach4.setNhanDeChinh("Advanced D");
-            sach1.setTacGia("Mạnh Đạt");
-            sach4.setAnh("R.drawable.newbook");
-            Sach sach5 = new Sach();
-            sach5.setSoISBN("2");
-            sach5.setNhanDeChinh("Advanced D");
-            sach1.setTacGia("Mạnh Đạt");
-            sach5.setAnh("R.drawable.newbook");
-            sachs.add(sach1);
-            sachs.add(sach2);
-            sachs.add(sach3);
-            sachs.add(sach4);
-            sachs.add(sach5);
+            HandlerBookTraining handlerBookTraining = new HandlerBookTraining();
+            List<BookTrainingResponse> books = handlerBookTraining.getAllBookTraining();
+            Log.d( "getBook: %s", String.valueOf(books.size()));
+            books.forEach(book-> {
+                Sach sach = new Sach();
+                sach.setNhanDeChinh(book.bookName);
+                sach.setSoISBN(String.valueOf(book.id));
+                sachs.add(sach);
+            });
 
 
 

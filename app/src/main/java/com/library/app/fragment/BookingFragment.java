@@ -85,6 +85,6 @@ public class BookingFragment extends Fragment {
     }
 
     private void anhXa(){
-        bookingConfirmBtn = view.findViewById(R.id.book_now_btn_1);
+
     }
 }
