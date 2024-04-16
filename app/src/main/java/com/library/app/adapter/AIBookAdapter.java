@@ -78,18 +78,15 @@ public class AIBookAdapter extends RecyclerView.Adapter<AIBookAdapter.MenuSachVi
             title1 = itemView.findViewById(R.id.book);
             title2 = itemView.findViewById(R.id.author);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, AIBookChatActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("id",listSach.get(getPosition()).getSoISBN());
-                    bundle.putString("ten",listSach.get(getPosition()).getNhanDeChinh());
-                    bundle.putString("tacgia",listSach.get(getPosition()).getTacGia());
-                    bundle.putString("anh", listSach.get(getPosition()).getAnh().toString());
-                    intent.putExtras(bundle);
-                    context.startActivity(intent);
-                }
+            itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(context, AIBookChatActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("id",listSach.get(getPosition()).getSoISBN());
+                bundle.putString("ten",listSach.get(getPosition()).getNhanDeChinh());
+                bundle.putString("tacgia",listSach.get(getPosition()).getTacGia());
+                bundle.putString("anh", "app/sampledata/img/book-icon.png");
+                intent.putExtras(bundle);
+                context.startActivity(intent);
             });
 
         }

@@ -35,8 +35,6 @@ public class HomeFragment extends Fragment {
     private MenuSachAdapter menuSachAdapter;
     private Toolbar toolbar;
 
-    HandlerBookTraining handlerBookTraining = new HandlerBookTraining();
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -46,7 +44,6 @@ public class HomeFragment extends Fragment {
         getDichVu();
         getNewBook();
         getHotBook();
-        handlerBookTraining.getAllBookTraining();
         return view;
     }
 
