@@ -17,12 +17,19 @@ import android.view.MenuItem;
 import com.library.app.R;
 import com.library.app.adapter.AIBookAdapter;
 import com.library.app.adapter.MenuSachAdapter;
+import com.library.app.api.ApiBookTrain;
+import com.library.app.api.ApiBookTraining;
 import com.library.app.api.HandlerBookTraining;
 import com.library.app.dto.BookTrainingResponse;
 import com.library.app.model.Sach;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AIBook extends AppCompatActivity {
 
@@ -69,15 +76,30 @@ public class AIBook extends AppCompatActivity {
 
         private void getBook(){
             ArrayList<Sach> sachs = new ArrayList<>();
-            HandlerBookTraining handlerBookTraining = new HandlerBookTraining();
-            List<BookTrainingResponse> books = handlerBookTraining.getAllBookTraining();
-            Log.d( "getBook: %s", String.valueOf(books.size()));
-            books.forEach(book-> {
-                Sach sach = new Sach();
-                sach.setNhanDeChinh(book.bookName);
-                sach.setSoISBN(String.valueOf(book.id));
-                sachs.add(sach);
+            ApiBookTraining.apiBookTraining.bookTraningReq().enqueue(new Callback<List<BookTrainingResponse>>() {
+                @Override
+                public void onResponse(Call<List<BookTrainingResponse>> call, Response<List<BookTrainingResponse>> response) {
+                    ArrayList<BookTrainingResponse> bookTrainingResponses = (ArrayList<BookTrainingResponse>) response.body();
+                    Log.d( "onResponse: ", bookTrainingResponses.get(0).getBookName());
+                }
+
+                @Override
+                public void onFailure(Call<List<BookTrainingResponse>> call, Throwable throwable) {
+                    Log.d( "lỗi: ",throwable.toString());
+                }
             });
+
+          /*  HandlerBookTraining handlerBookTraining = new HandlerBookTraining();
+            List<BookTrainingResponse> books = handlerBookTraining.getAllBookTraining();*/
+
+
+//            Log.d( "getBook: %s", String.valueOf(books.size()));
+//            books.forEach(book-> {
+//                Sach sach = new Sach();
+//                sach.setNhanDeChinh(book.bookName);
+//                sach.setSoISBN(String.valueOf(book.id));
+//                sachs.add(sach);
+//            });
 
 
 

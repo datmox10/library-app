@@ -26,13 +26,14 @@ public class HandlerBookTraining {
 
     public List<BookTrainingResponse> getAllBookTraining() {
         List<BookTrainingResponse> result = new ArrayList<>();
+
         try {
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .build();
             MediaType mediaType = MediaType.parse("text/plain");
             RequestBody body = RequestBody.create(mediaType, "");
             Request request = new Request.Builder()
-                    .url("http://localhost:8080/api/book/training/findAll")
+                    .url("http://localhost:8081/api/book/training/findAll")
                     .method("GET", body)
                     .addHeader("Cookie", "JSESSIONID=EE1637F3E67E007413996CEFA4CFDF31")
                     .build();
@@ -45,7 +46,7 @@ public class HandlerBookTraining {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
-        } // gọi vào hàm này ở app tôi phát.. gọi hàm này nhá là sao
+        }
         return result;
     }
 
