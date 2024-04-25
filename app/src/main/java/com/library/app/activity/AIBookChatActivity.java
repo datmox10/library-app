@@ -7,33 +7,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.library.app.R;
 import com.library.app.adapter.ChatAdapter;
-import com.library.app.api.ApiGPT;
-import com.library.app.api.ApiGPTClient;
-import com.library.app.api.HandlerQuestionTraining;
-import com.library.app.model.MessParamPost;
-import com.library.app.model.Message;
 import com.library.app.model.MessagesChat;
 
-import java.sql.Time;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class AIBookChatActivity extends AppCompatActivity {
 
@@ -75,17 +61,17 @@ public class AIBookChatActivity extends AppCompatActivity {
     }
 
     public void postData(String ques) {
-        HandlerQuestionTraining.ConversationRequest request = new HandlerQuestionTraining.ConversationRequest();
-        request.conversation = ques;
-        request.sessionChat = this.sessionChat;
-        addQuesToRecycle(ques, 0);
-        try {
-            String message = HandlerQuestionTraining.getMessage(request);
-            Log.d("messsage = ", message);
-            addQuesToRecycle(message, 1);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+//        HandlerQuestionTraining.ConversationRequest request = new HandlerQuestionTraining.ConversationRequest();
+//        request.conversation = ques;
+//        request.sessionChat = this.sessionChat;
+//        addQuesToRecycle(ques, 0);
+//        try {
+//            Thread.sleep(1000 * 10);
+//            Log.d("messsage = ", message);
+//            addQuesToRecycle(message, 1);
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
     }
 
     @SuppressLint("NotifyDataSetChanged")

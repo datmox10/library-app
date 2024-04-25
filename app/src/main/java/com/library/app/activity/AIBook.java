@@ -9,14 +9,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.library.app.R;
 import com.library.app.adapter.AIBookAdapter;
-import com.library.app.api.HandlerBookTraining;
 import com.library.app.dto.BookTrainingResponse;
+import com.library.app.model.BookViewTrainingModel;
 import com.library.app.model.Sach;
+import com.library.app.repository.ApiClient;
+import com.library.app.repository.BookTrainingRepository;
+import com.library.app.repository.remote.RemoteBookTrainingRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,17 +32,28 @@ public class AIBook extends AppCompatActivity {
     private RecyclerView rcycCategory;
 
     private AIBookAdapter aiBookAdapter;
+    private BookViewTrainingModel bookViewTrainingModel;
+    private boolean isApiCalled = false;
+    List<BookTrainingResponse> books;
+
+    private final Observer<List<BookTrainingResponse>> booksObserver = bookTrainingResponses -> {
+        if (bookTrainingResponses != null) {
+            getBook(bookTrainingResponses);
+        }
+    };
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        BookTrainingRepository bookRepository = new RemoteBookTrainingRepository(ApiClient.getApiService());
+        bookViewTrainingModel = new BookViewTrainingModel(bookRepository);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aibook);
         AnhXa();
-
         String name = "Hỏi đáp AI";
         setToolbar(toolbar, name);
-        getBook();
+
+        bookViewTrainingModel.getBookListLiveData().observe(this, booksObserver);
     }
 
     public void setToolbar(Toolbar toolbar, String name) {
@@ -52,8 +67,8 @@ public class AIBook extends AppCompatActivity {
     }
 
     private void AnhXa() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar_category);
-        rcycCategory = (RecyclerView) findViewById(R.id.rcyc_category);
+        toolbar = findViewById(R.id.toolbar_category);
+        rcycCategory = findViewById(R.id.rcyc_category);
     }
 
     @Override
@@ -65,11 +80,9 @@ public class AIBook extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void getBook() {
+    private void getBook(List<BookTrainingResponse> books) {
         try {
             ArrayList<Sach> sachs = new ArrayList<>();
-            List<BookTrainingResponse> books = HandlerBookTraining.getAllBookTraining();
-            Thread.sleep(3000);
             Log.d("getBook training: %s", String.valueOf(books.size()));
             books.forEach(book -> {
                 Sach sach = new Sach();
@@ -84,7 +97,5 @@ public class AIBook extends AppCompatActivity {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
     }
-
 }

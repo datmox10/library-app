@@ -1,6 +1,6 @@
 package com.library.app.fragment;
 
-import android.graphics.drawable.Drawable;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,7 +15,6 @@ import android.widget.Toolbar;
 import com.library.app.R;
 import com.library.app.adapter.DichVuAdapter;
 import com.library.app.adapter.MenuSachAdapter;
-import com.library.app.api.HandlerBookTraining;
 import com.library.app.model.DichVu;
 import com.library.app.model.Sach;
 
@@ -53,6 +52,7 @@ public class HomeFragment extends Fragment {
         recyclerHotBook = view.findViewById(R.id.recycler_hot_book);
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void getDichVu(){
         ArrayList<DichVu> dichVus = new ArrayList<>();
         dichVus.add(new DichVu(1,"Đặt phòng", getResources().getDrawable(R.drawable.datphong)));

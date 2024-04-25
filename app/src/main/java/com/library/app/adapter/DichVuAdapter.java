@@ -43,20 +43,14 @@ public class DichVuAdapter extends RecyclerView.Adapter<DichVuAdapter.DichVuView
         if(dichVu==null){
             return;
         }
-//        Picasso.get()
-//                .load(playlist.getHinh())
-//                .into(holder.img);
         holder.imageView.setImageDrawable(dichVu.getAnhDichVu());
         holder.textView.setText(dichVu.getTenDichVu());
-            holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(dichVu.getId() == 1){
-                        startActivity(BookingActivity.class);
-                    }
-                    if(dichVu.getId() == 4){
-                        startActivity(AIBook.class);
-                    }
+            holder.relativeLayout.setOnClickListener(v -> {
+                if(dichVu.getId() == 1){
+                    startActivity(BookingActivity.class);
+                }
+                if(dichVu.getId() == 4){
+                    startActivity(AIBook.class);
                 }
             });
     }
