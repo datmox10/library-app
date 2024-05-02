@@ -3,6 +3,8 @@ package com.library.app.activity;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,10 +16,18 @@ import android.widget.ImageButton;
 
 import com.library.app.R;
 import com.library.app.adapter.ChatAdapter;
+import com.library.app.dto.BookTrainingResponse;
+import com.library.app.dto.ConversationRequest;
+import com.library.app.dto.ConversationResponse;
+import com.library.app.model.BookAIChatModel;
 import com.library.app.model.MessagesChat;
+import com.library.app.repository.ApiClient;
+import com.library.app.repository.BookTrainingRepository;
+import com.library.app.repository.remote.RemoteBookTrainingRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
@@ -31,22 +41,26 @@ public class AIBookChatActivity extends AppCompatActivity {
     private List<MessagesChat> messagesChatList;
     private String sessionChat;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private BookAIChatModel bookAIChatModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // lấy ra thông tin session chat được truyền vào
-        if (null == savedInstanceState) {
-            this.sessionChat = "60dd9bd7-1145-40d2-a209-80750d63ee32";
-        } else {
-            this.sessionChat = savedInstanceState.getString("id");
-        }
         super.onCreate(savedInstanceState);
+        Bundle extras = getIntent().getExtras();
+        // lấy ra thông tin session chat được truyền vào
+        if (null == extras) {
+            this.sessionChat = "";
+        } else {
+            this.sessionChat = extras.getString("id");
+        }
         setContentView(R.layout.activity_aibook_chat);
         AnhXa();
         String name = "Hỏi đáp AI";
         setToolbar(toolbar, name);
         messagesChatList = new ArrayList<>();
         chatAdapter = new ChatAdapter(getApplicationContext(), messagesChatList);
+        BookTrainingRepository bookRepository = new RemoteBookTrainingRepository(ApiClient.getApiService());
+        bookAIChatModel = new BookAIChatModel(bookRepository);
         initView();
         initControll();
     }
@@ -61,17 +75,31 @@ public class AIBookChatActivity extends AppCompatActivity {
     }
 
     public void postData(String ques) {
-//        HandlerQuestionTraining.ConversationRequest request = new HandlerQuestionTraining.ConversationRequest();
-//        request.conversation = ques;
-//        request.sessionChat = this.sessionChat;
-//        addQuesToRecycle(ques, 0);
-//        try {
-//            Thread.sleep(1000 * 10);
-//            Log.d("messsage = ", message);
-//            addQuesToRecycle(message, 1);
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
+        if (bookAIChatModel != null) {
+            ConversationRequest request = new ConversationRequest();
+            request.setConversation(ques);
+            request.setSessionChat(this.sessionChat);
+            addQuesToRecycle(ques, 0);
+            LiveData<ConversationResponse> responseLiveData = bookAIChatModel.getQuestion(request);
+            if (responseLiveData != null) {
+                responseLiveData.observe(this, conversationResponse -> {
+                    if (conversationResponse != null) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                addQuesToRecycle(conversationResponse.message, 1);
+                            }
+                        });
+                    }
+                });
+            } else {
+                // Xử lý trường hợp responseLiveData là null
+                System.out.println("data response live null");
+            }
+        } else {
+            System.out.println("data bookAIChatModel live null");
+            // Xử lý trường hợp bookAIChatModel là null
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")

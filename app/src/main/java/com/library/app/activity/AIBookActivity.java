@@ -25,7 +25,7 @@ import com.library.app.repository.remote.RemoteBookTrainingRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AIBook extends AppCompatActivity {
+public class AIBookActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
 
@@ -33,9 +33,6 @@ public class AIBook extends AppCompatActivity {
 
     private AIBookAdapter aiBookAdapter;
     private BookViewTrainingModel bookViewTrainingModel;
-    private boolean isApiCalled = false;
-    List<BookTrainingResponse> books;
-
     private final Observer<List<BookTrainingResponse>> booksObserver = bookTrainingResponses -> {
         if (bookTrainingResponses != null) {
             getBook(bookTrainingResponses);

@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.library.app.dto.BookTrainingResponse;
+import com.library.app.dto.ConversationRequest;
+import com.library.app.dto.ConversationResponse;
 import com.library.app.repository.ApiService;
 import com.library.app.repository.BookTrainingRepository;
 
@@ -43,5 +45,27 @@ public class RemoteBookTrainingRepository implements BookTrainingRepository {
             }
         });
         return data;
+    }
+
+    @Override
+    public LiveData<ConversationResponse> getQuestionResponse(ConversationRequest conversationRequest) {
+        MutableLiveData<ConversationResponse> resultLiveData = new MutableLiveData<>();
+        apiService.question(conversationRequest).enqueue(new Callback<ConversationResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<ConversationResponse> call, @NonNull Response<ConversationResponse> response) {
+                if (response.isSuccessful()) {
+                    resultLiveData.setValue(response.body());
+                    System.out.println("value response ==  " + response.body() );
+                } else {
+                    resultLiveData.setValue(new ConversationResponse("Có lỗi sảy ra khi thực hiện đặt câu hỏi"));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ConversationResponse> call, @NonNull Throwable throwable) {
+
+            }
+        });
+        return resultLiveData;
     }
 }

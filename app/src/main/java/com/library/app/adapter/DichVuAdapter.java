@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.library.app.R;
-import com.library.app.activity.AIBook;
+import com.library.app.activity.AIBookActivity;
 import com.library.app.activity.BookingActivity;
 import com.library.app.model.DichVu;
 
@@ -50,7 +50,7 @@ public class DichVuAdapter extends RecyclerView.Adapter<DichVuAdapter.DichVuView
                     startActivity(BookingActivity.class);
                 }
                 if(dichVu.getId() == 4){
-                    startActivity(AIBook.class);
+                    startActivity(AIBookActivity.class);
                 }
             });
     }

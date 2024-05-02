@@ -26,7 +26,7 @@
             android:name=".activity.AIBookChatActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.AIBook"
+            android:name=".activity.AIBookActivity"
             android:exported="false" />
         <activity
             android:name=".activity.BorrowHistoryActivity"

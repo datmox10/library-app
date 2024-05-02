@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel;
 
 import com.library.app.dto.BookTrainingResponse;
 import com.library.app.repository.BookTrainingRepository;
-import com.library.app.repository.remote.RemoteBookTrainingRepository;
 
 import java.util.List;
 

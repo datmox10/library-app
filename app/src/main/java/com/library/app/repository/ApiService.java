@@ -7,12 +7,14 @@ import com.library.app.dto.ConversationResponse;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ApiService {
     @GET("/api/book/training/findAll")
     Call<List<BookTrainingResponse>> getBooks();
-    @POST("/")
-    Call<ConversationResponse> question(ConversationRequest request);
+
+    @POST("/api/book/training/conversation")
+    Call<ConversationResponse> question(@Body ConversationRequest request);
 }
