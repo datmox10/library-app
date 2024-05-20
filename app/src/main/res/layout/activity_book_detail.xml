@@ -68,24 +68,10 @@
             android:text="Mượn sách" />
 
         <Button
-            android:id="@+id/btn_doc"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/btn_muon"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_toEndOf="@+id/img"
-            android:background="@drawable/button"
-            android:gravity="center"
-            android:text="Đọc sách" />
-
-        <Button
             android:id="@+id/btn_yeuthich"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/btn_doc"
+            android:layout_below="@id/btn_muon"
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="20dp"

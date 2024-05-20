@@ -1,12 +1,12 @@
 package com.library.app.fragment;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +15,18 @@ import android.widget.Toolbar;
 import com.library.app.R;
 import com.library.app.adapter.DichVuAdapter;
 import com.library.app.adapter.MenuSachAdapter;
+import com.library.app.api.ApiBook;
+import com.library.app.api.HandlerBookTraining;
+import com.library.app.model.Book;
+import com.library.app.model.BookResponse;
 import com.library.app.model.DichVu;
-import com.library.app.model.Sach;
+import com.library.app.model.TokenManager;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,15 +42,22 @@ public class HomeFragment extends Fragment {
     private MenuSachAdapter menuSachAdapter;
     private Toolbar toolbar;
 
+    private TokenManager tokenManager = TokenManager.getInstance(getActivity());
+
+    HandlerBookTraining handlerBookTraining = new HandlerBookTraining();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home, container, false);
+        Log.d( "onCreate-homey: ",tokenManager.getToken());
         AnhXa();
         getDichVu();
         getNewBook();
         getHotBook();
+
+        handlerBookTraining.getAllBookTraining();
         return view;
     }
 
@@ -52,7 +67,6 @@ public class HomeFragment extends Fragment {
         recyclerHotBook = view.findViewById(R.id.recycler_hot_book);
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
     private void getDichVu(){
         ArrayList<DichVu> dichVus = new ArrayList<>();
         dichVus.add(new DichVu(1,"Đặt phòng", getResources().getDrawable(R.drawable.datphong)));
@@ -67,43 +81,71 @@ public class HomeFragment extends Fragment {
         recyclerMenu.setAdapter(dichVuAdapter);
     }
     private void getNewBook(){
-        ArrayList<Sach> sachs = new ArrayList<>();
-        Sach sach1 = new Sach();
-        sach1.setSoISBN("1");
-        sach1.setNhanDeChinh("Advanced C");
-        sach1.setAnh("R.drawable.newbook");
-        Sach sach2 = new Sach();
-        sach2.setSoISBN("2");
-        sach2.setNhanDeChinh("Advanced D");
-        sach2.setAnh("R.drawable.newbook");
-        sachs.add(sach1);
-        sachs.add(sach2);
+
+        ApiBook apiBook = new ApiBook(tokenManager.getToken());
+        ApiBook.MyApi myApi = apiBook.getRetrofitInstance().create(ApiBook.MyApi.class);
+        Call<BookResponse> call = myApi.getData();
+        call.enqueue(new Callback<BookResponse>() {
+            @Override
+            public void onResponse(Call<BookResponse> call, Response<BookResponse> response) {
+
+                if(response.isSuccessful()){
+                    Log.d( "onResponse: ", String.valueOf(response.body().getBooksEntityList().size()));
+                    ArrayList<Book> books = response.body().getBooksEntityList();
+
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
+                    recyclerNewBook.setLayoutManager(linearLayoutManager);
+
+                    menuSachAdapter = new MenuSachAdapter(books,getActivity());
+                    recyclerNewBook.setAdapter(menuSachAdapter);
+                }else{
+                    Log.d( "onResponse: ", String.valueOf(response.code()));
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<BookResponse> call, Throwable throwable) {
+                Log.d( "onResponse: ", throwable.toString());
+            }
+        });
 
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
-        recyclerNewBook.setLayoutManager(linearLayoutManager);
-
-        menuSachAdapter = new MenuSachAdapter(sachs,getActivity());
-        recyclerNewBook.setAdapter(menuSachAdapter);
     }
 
     private void getHotBook(){
-        ArrayList<Sach> hotSach = new ArrayList<>();
-        Sach sach3 = new Sach();
-        sach3.setSoISBN("3");
-        sach3.setNhanDeChinh("Advanced C");
-        sach3.setAnh("R.drawable.newbook");
-        Sach sach4 = new Sach();
-        sach4.setSoISBN("4");
-        sach4.setNhanDeChinh("Advanced C");
-        sach4.setAnh("R.drawable.newbook");
-        hotSach.add(sach3);
-        hotSach.add(sach4);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
-        recyclerHotBook.setLayoutManager(linearLayoutManager);
+        ApiBook apiBook = new ApiBook(tokenManager.getToken());
+        ApiBook.MyApi myApi = apiBook.getRetrofitInstance().create(ApiBook.MyApi.class);
+        Call<BookResponse> call = myApi.getData();
+        call.enqueue(new Callback<BookResponse>() {
+            @Override
+            public void onResponse(Call<BookResponse> call, Response<BookResponse> response) {
 
-        menuSachAdapter = new MenuSachAdapter(hotSach,getActivity());
-        recyclerHotBook.setAdapter(menuSachAdapter);
+                if(response.isSuccessful()){
+                    Log.d( "onResponse: ", String.valueOf(response.body().getBooksEntityList().size()));
+                    ArrayList<Book> books = response.body().getBooksEntityList();
+
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
+                    recyclerHotBook.setLayoutManager(linearLayoutManager);
+
+                    menuSachAdapter = new MenuSachAdapter(books,getActivity());
+                    recyclerHotBook.setAdapter(menuSachAdapter);
+                }else{
+                    Log.d( "onResponse: ", String.valueOf(response.code()));
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<BookResponse> call, Throwable throwable) {
+                Log.d( "onResponse: ", throwable.toString());
+            }
+        });
+
+
+
+
+
     }
 }

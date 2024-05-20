@@ -7,21 +7,21 @@ public class PhanLoai {
     String maToai;
     String tenLoai;
 
-    ArrayList<Sach> sachList;
+    ArrayList<Book> books;
 
 
-    public PhanLoai(String maToai, String tenLoai, ArrayList<Sach> sachList) {
+    public PhanLoai(String maToai, String tenLoai, ArrayList<Book> books) {
         this.maToai = maToai;
         this.tenLoai = tenLoai;
-        this.sachList = sachList;
+        this.books = books;
     }
 
-    public ArrayList<Sach> getSachList() {
-        return sachList;
+    public ArrayList<Book> getSachList() {
+        return books;
     }
 
-    public void setSachList(ArrayList<Sach> sachList) {
-        this.sachList = sachList;
+    public void setSachList(ArrayList<Book> books) {
+        this.books = books;
     }
 
     public String getMaToai() {

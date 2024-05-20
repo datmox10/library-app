@@ -42,6 +42,7 @@ public class AIBookChatActivity extends AppCompatActivity {
     private String sessionChat;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     private BookAIChatModel bookAIChatModel;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,10 +77,12 @@ public class AIBookChatActivity extends AppCompatActivity {
 
     public void postData(String ques) {
         if (bookAIChatModel != null) {
+            Log.d( "postData: ",ques);
             ConversationRequest request = new ConversationRequest();
             request.setConversation(ques);
             request.setSessionChat(this.sessionChat);
             addQuesToRecycle(ques, 0);
+
             LiveData<ConversationResponse> responseLiveData = bookAIChatModel.getQuestion(request);
             if (responseLiveData != null) {
                 responseLiveData.observe(this, conversationResponse -> {
@@ -88,6 +91,7 @@ public class AIBookChatActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 addQuesToRecycle(conversationResponse.message, 1);
+                                Log.d("run: ",conversationResponse.message);
                             }
                         });
                     }

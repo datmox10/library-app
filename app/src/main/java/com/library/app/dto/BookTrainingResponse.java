@@ -3,6 +3,8 @@ package com.library.app.dto;
 public class BookTrainingResponse {
     public Long id;
     public String bookName;
+
+
     public String sessionChat;
 
     public BookTrainingResponse(Long id, String bookName, String sessionChat) {

@@ -1,5 +1,6 @@
 package com.library.app.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -39,7 +40,7 @@ public class ClassifyAdapter extends RecyclerView.Adapter<ClassifyAdapter.Classi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ClassifyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ClassifyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         PhanLoai phanLoai = phanLoais.get(position);
         if(phanLoai==null){
             return;

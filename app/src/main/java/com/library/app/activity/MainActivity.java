@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.library.app.fragment.HomeFragment;
 import com.library.app.fragment.LibraryFragment;
 import com.library.app.fragment.QrcodeFragment;
 import com.library.app.fragment.UserFragment;
+import com.library.app.model.TokenManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView countNotify;
 
     private int pendingNotify = 10;
+
+    private TokenManager tokenManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         replaceFragment(new HomeFragment());
         binding.bottomNavView.getMenu().findItem(R.id.home).setChecked(true);
         binding.bottomNavView.setBackground(null);
+        tokenManager = TokenManager.getInstance(this);
 
         itemSlected();
     }

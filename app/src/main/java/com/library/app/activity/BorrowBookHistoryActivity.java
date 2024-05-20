@@ -1,88 +1,87 @@
 package com.library.app.activity;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.Toast;
-
-import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Bundle;
+import android.util.Log;
 
 import com.library.app.R;
 import com.library.app.adapter.BorrowAdapter;
 import com.library.app.adapter.BorrowBookAdapter;
-import com.library.app.adapter.ClassifyAdapter;
 import com.library.app.api.ApiBook;
+import com.library.app.model.BorrowBook;
 import com.library.app.model.BorrowBookMD;
 import com.library.app.model.BorrowBookResponse;
 import com.library.app.model.TokenManager;
 
 import java.util.ArrayList;
+import java.util.Date;
 
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BorrowHistoryActivity extends AppCompatActivity {
+public class BorrowBookHistoryActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private RecyclerView recyclerView;
-
-    private BorrowAdapter borrowAdapter;
 
     private TokenManager tokenManager;
+    private RecyclerView recyclerView;
 
+    private BorrowBookAdapter borrowBookAdapter;
 
+    private BorrowAdapter borrowAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_borrow_history);
+        setContentView(R.layout.activity_borrow_book_history);
         tokenManager = TokenManager.getInstance(this);
         anhXa();
         setToolbar(toolbar);
-        getData();
+        getBookMD();
     }
 
-    public void setToolbar(Toolbar toolbar) {
+    private void anhXa(){
+        toolbar =(Toolbar) findViewById(R.id.tool_bar_detail_book);
+        recyclerView = (RecyclerView) findViewById(R.id.rcyc_history_borrow);
+    }
+
+    private void setToolbar(Toolbar toolbar) {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null){
+        if(actionBar!=null){
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
     }
 
+    private void getBookMD(){
+        ArrayList<BorrowBookMD> borrowBookMDS = new ArrayList<>();
+        BorrowBookMD borrowBookMD1= new BorrowBookMD();
+        borrowBookMD1.setBorrowDate("a");
+        borrowBookMD1.setBookId("1");
+        borrowBookMD1.setOverdue("a");
+        borrowBookMD1.setId("a");
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == android.R.id.home){
-            onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        BorrowBookMD borrowBookMD2= new BorrowBookMD();
+        borrowBookMD2.setBorrowDate("a");
+        borrowBookMD2.setBookId("1");
+        borrowBookMD2.setOverdue("a");
+        borrowBookMD2.setId("a");
+
+        borrowBookMDS.add(borrowBookMD1);
+        borrowBookMDS.add(borrowBookMD2);
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplication(),3);
+        recyclerView.setLayoutManager(gridLayoutManager);
+
+        borrowAdapter = new BorrowAdapter(borrowBookMDS,getApplication());
+        recyclerView.setAdapter(borrowAdapter);
     }
-
-    private void anhXa(){
-        toolbar = (Toolbar) findViewById(R.id.toolbar_return);
-        recyclerView = (RecyclerView) findViewById(R.id.rcyc_return);
-    }
-
 
     private void getData(){
         ApiBook apiBook = new ApiBook(tokenManager.getToken());
@@ -96,11 +95,11 @@ public class BorrowHistoryActivity extends AppCompatActivity {
                     ArrayList<BorrowBookMD> books = response.body().getBorrowBookMDS();
                     Log.d( "history: ",books.size()+"" );
 
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplication(),RecyclerView.VERTICAL,false);
-                    recyclerView.setLayoutManager(linearLayoutManager);
+                    GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplication(),3);
+                    recyclerView.setLayoutManager(gridLayoutManager);
 
-                    borrowAdapter = new BorrowAdapter(books,getApplication());
-                    recyclerView.setAdapter(borrowAdapter);
+                    borrowBookAdapter = new BorrowBookAdapter(books,getApplication());
+                    recyclerView.setAdapter(borrowBookAdapter);
                 }else{
                     Log.d( "history: ", String.valueOf(response.code()));
                 }
@@ -112,6 +111,4 @@ public class BorrowHistoryActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }

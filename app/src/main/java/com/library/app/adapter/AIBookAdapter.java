@@ -38,7 +38,7 @@ public class AIBookAdapter extends RecyclerView.Adapter<AIBookAdapter.MenuSachVi
     @NonNull
     @Override
     public MenuSachViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_borrow_book,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_ai_layout,parent,false);
         return new MenuSachViewHolder(view);
     }
 
@@ -74,9 +74,9 @@ public class AIBookAdapter extends RecyclerView.Adapter<AIBookAdapter.MenuSachVi
         public MenuSachViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.img_item_borrow_book);
-            title1 = itemView.findViewById(R.id.book);
-            title2 = itemView.findViewById(R.id.author);
+            imageView = itemView.findViewById(R.id.img_item_ai_book);
+            title1 = itemView.findViewById(R.id.txtsach);
+            title2 = itemView.findViewById(R.id.txtTacgia);
 
             itemView.setOnClickListener(v -> {
                 Bundle bundle = new Bundle();

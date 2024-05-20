@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.library.app.R;
 import com.library.app.activity.BookDetailActivity;
+import com.library.app.model.Book;
+import com.library.app.model.BookResponse;
 import com.library.app.model.Sach;
 import com.squareup.picasso.Picasso;
 
@@ -26,11 +29,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MenuSachAdapter extends RecyclerView.Adapter<MenuSachAdapter.MenuSachViewHolder> {
-    private ArrayList<Sach> listSach;
+    private ArrayList<Book> books;
     private Context context;
 
-    public MenuSachAdapter(ArrayList<Sach> listSach, Context context) {
-        this.listSach = listSach;
+    public MenuSachAdapter(ArrayList<Book> books, Context context) {
+        this.books = books;
         this.context = context;
     }
 
@@ -43,24 +46,24 @@ public class MenuSachAdapter extends RecyclerView.Adapter<MenuSachAdapter.MenuSa
 
     @Override
     public void onBindViewHolder(@NonNull MenuSachViewHolder holder, int position) {
-        Sach sach = listSach.get(position);
-        if(sach==null){
+        Book book = books.get(position);
+        if(book==null){
             return;
         }
 
 //        holder.imageView.setBackground(sach.getAnh());
 
-        holder.title.setText(sach.getNhanDeChinh());
+        holder.title.setText(book.getTitle());
         Picasso.get()
-                .load(sach.getAnh())
+                .load(book.getImage())
                 .into(holder.imageView);
 
     }
 
     @Override
     public int getItemCount() {
-        if(listSach!=null){
-            return listSach.size();
+        if(books!=null){
+            return books.size();
         }
         return 0;
     }
@@ -80,10 +83,10 @@ public class MenuSachAdapter extends RecyclerView.Adapter<MenuSachAdapter.MenuSa
                 public void onClick(View v) {
                     Intent intent = new Intent(context,BookDetailActivity.class);
                     Bundle bundle = new Bundle();
-                    bundle.putString("id",listSach.get(getPosition()).getSoISBN());
-                    bundle.putString("ten",listSach.get(getPosition()).getNhanDeChinh());
-                    bundle.putString("anh", listSach.get(getPosition()).getAnh().toString());
+                    bundle.putString("id",books.get(getPosition()).getId());
+                    bundle.putString("ten",books.get(getPosition()).getTitle());
                     intent.putExtras(bundle);
+                    Log.d( "onClick: ",books.get(getPosition()).getId());
                     context.startActivity(intent);
                 }
             });

@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.library.app.R;
+import com.library.app.activity.AIBook;
 import com.library.app.activity.AIBookActivity;
 import com.library.app.activity.BookingActivity;
 import com.library.app.model.DichVu;
@@ -43,14 +44,20 @@ public class DichVuAdapter extends RecyclerView.Adapter<DichVuAdapter.DichVuView
         if(dichVu==null){
             return;
         }
+//        Picasso.get()
+//                .load(playlist.getHinh())
+//                .into(holder.img);
         holder.imageView.setImageDrawable(dichVu.getAnhDichVu());
         holder.textView.setText(dichVu.getTenDichVu());
-            holder.relativeLayout.setOnClickListener(v -> {
-                if(dichVu.getId() == 1){
-                    startActivity(BookingActivity.class);
-                }
-                if(dichVu.getId() == 4){
-                    startActivity(AIBookActivity.class);
+            holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(dichVu.getId() == 1){
+                        startActivity(BookingActivity.class);
+                    }
+                    if(dichVu.getId() == 4){
+                        startActivity(AIBookActivity.class);
+                    }
                 }
             });
     }

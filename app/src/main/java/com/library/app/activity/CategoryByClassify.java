@@ -11,14 +11,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.library.app.R;
 import com.library.app.adapter.MenuSachAdapter;
+import com.library.app.api.ApiBook;
+import com.library.app.model.Book;
+import com.library.app.model.BookResponse;
 import com.library.app.model.Sach;
+import com.library.app.model.TokenManager;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CategoryByClassify extends AppCompatActivity {
 
@@ -27,13 +36,15 @@ public class CategoryByClassify extends AppCompatActivity {
     private RecyclerView rcycCategory;
 
     private MenuSachAdapter menuSachAdapter;
+
+    private TokenManager tokenManager;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_by_classify);
         AnhXa();
-
+        tokenManager = TokenManager.getInstance(this);
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
         setToolbar(toolbar,name);
@@ -65,40 +76,32 @@ public class CategoryByClassify extends AppCompatActivity {
     }
 
     private void getBook(){
-        ArrayList<Sach> sachs = new ArrayList<>();
-        Sach sach1 = new Sach();
-        sach1.setSoISBN("1");
-        sach1.setNhanDeChinh("Advanced C");
-        sach1.setAnh("R.drawable.newbook");
-        Sach sach2 = new Sach();
-        sach2.setSoISBN("2");
-        sach2.setNhanDeChinh("Advanced D");
-        sach2.setAnh("R.drawable.newbook");
-        Sach sach3 = new Sach();
-        sach3.setSoISBN("2");
-        sach3.setNhanDeChinh("Advanced D");
-        sach3.setAnh("R.drawable.newbook");
-        Sach sach4 = new Sach();
-        sach4.setSoISBN("2");
-        sach4.setNhanDeChinh("Advanced D");
-        sach4.setAnh("R.drawable.newbook");
-        Sach sach5 = new Sach();
-        sach5.setSoISBN("2");
-        sach5.setNhanDeChinh("Advanced D");
-        sach5.setAnh("R.drawable.newbook");
-        sachs.add(sach1);
-        sachs.add(sach2);
-        sachs.add(sach3);
-        sachs.add(sach4);
-        sachs.add(sach5);
+        ApiBook apiBook = new ApiBook(tokenManager.getToken());
+        ApiBook.MyApi myApi = apiBook.getRetrofitInstance().create(ApiBook.MyApi.class);
+        Call<BookResponse> call = myApi.getData();
+        call.enqueue(new Callback<BookResponse>() {
+            @Override
+            public void onResponse(Call<BookResponse> call, Response<BookResponse> response) {
 
+                if(response.isSuccessful()){
+                    Log.d( "onResponse: ", String.valueOf(response.body().getBooksEntityList().size()));
+                    ArrayList<Book> books = response.body().getBooksEntityList();
 
+                    GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplication(),3);
+                    rcycCategory.setLayoutManager(gridLayoutManager);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,3);
-        rcycCategory.setLayoutManager(gridLayoutManager);
+                    menuSachAdapter = new MenuSachAdapter(books,getApplication());
+                    rcycCategory.setAdapter(menuSachAdapter);
+                }else{
+                    Log.d( "onResponse: ", String.valueOf(response.code()));
+                }
+            }
 
-        menuSachAdapter = new MenuSachAdapter(sachs,this);
-        rcycCategory.setAdapter(menuSachAdapter);
+            @Override
+            public void onFailure(Call<BookResponse> call, Throwable throwable) {
+                Log.d( "onResponse: ", throwable.toString());
+            }
+        });
     }
 
 

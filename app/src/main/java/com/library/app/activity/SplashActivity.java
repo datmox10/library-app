@@ -22,10 +22,10 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if(mySharedPreferences.getBooleanValue(KEY_FIRST_INSTALL)){
-                    startActivity(MainActivity.class);
+                    startActivity(LoginActivity.class);
                 }else {
                     startActivity(OnboardingActivity.class);
-//                    mySharedPreferences.putBooleanValue(KEY_FIRST_INSTALL,true);
+                    mySharedPreferences.putBooleanValue(KEY_FIRST_INSTALL,true);
                 }
             }
         },2000);
