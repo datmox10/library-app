@@ -5,8 +5,12 @@ import com.google.gson.GsonBuilder;
 import com.library.app.dto.RoomInDateResponse;
 import com.library.app.model.LoginRes;
 import com.library.app.model.MessRegister;
+import com.library.app.model.Room;
 import com.library.app.model.UserLogin;
 import com.library.app.model.UserMD;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -24,8 +28,6 @@ public interface ApiRoom {
             .create(ApiRoom.class);
 
     @POST("api/booking/room/getRoom")
-    Call<RoomInDateResponse> login(@Body UserLogin userLogin);
-    @POST("lib/v1/register")
-    Call<MessRegister> register(@Body UserMD userMD);
+    Call<ArrayList<Room>> getRoomInDate(@Body Date date);
 
 }
