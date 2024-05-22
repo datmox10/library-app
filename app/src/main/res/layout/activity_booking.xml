@@ -6,6 +6,7 @@
     android:id="@+id/main"
     android:layout_height="match_parent"
     tools:context=".activity.BookingActivity">
+
     <TextView
         android:id="@+id/user_booking_title"
         android:layout_width="wrap_content"
@@ -26,10 +27,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/user_booking_title"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        >
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_booking_title">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -41,13 +41,13 @@
                 android:id="@+id/square1"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@color/bg_color"/>
+                android:background="@color/bg_color" />
 
             <TextView
                 android:id="@+id/text1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Availabe"/>
+                android:text="Availabe" />
         </LinearLayout>
 
         <LinearLayout
@@ -60,13 +60,13 @@
                 android:id="@+id/square2"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@color/selected"/>
+                android:background="@color/selected" />
 
             <TextView
                 android:id="@+id/text2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Selected"/>
+                android:text="Selected" />
         </LinearLayout>
 
         <LinearLayout
@@ -79,15 +79,34 @@
                 android:id="@+id/square3"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@color/busy"/>
+                android:background="@color/busy" />
 
             <TextView
                 android:id="@+id/text3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Busy"/>
+                android:text="Busy" />
         </LinearLayout>
     </LinearLayout>
+
+    <ScrollView
+        android:layout_width="409dp"
+        android:layout_height="597dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datepicker_container" >
+
+        <LinearLayout
+            android:id="@+id/listRoom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_room" />
+
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/datepicker_container"
@@ -135,571 +154,4 @@
     </LinearLayout>
 
 
-
-    <LinearLayout
-        android:id="@+id/content_container_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/datepicker_container"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            android:id="@+id/room_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="P3.302"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:background="@color/light_bg"
-            app:layout_constraintTop_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
-
-        <LinearLayout
-            android:id="@+id/room_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/room_name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:orientation="horizontal"
-            >
-
-            <TextView
-                android:id="@+id/room_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Sức chứa"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:background="@color/light_bg"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/device_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/light_bg"
-            app:layout_constraintTop_toBottomOf="@+id/room_container"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Thiết bị"
-                android:background="@color/light_bg"
-                android:textSize="20dp"
-                android:textColor="@color/black"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/device_container"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:orientation="vertical"
-            >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:background="@color/light_bg"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                >
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="08:00"
-                    android:padding="4dp"
-                    android:background="@color/busy"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
-                />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="09:00"
-                    android:padding="4dp"
-                    android:background="@color/busy"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
-                />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="10:00"
-                    android:padding="4dp"
-                    android:background="@color/busy"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
-                />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="11:00"
-                    android:padding="4dp"
-                    android:background="@color/selected"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
-                />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="12:00"
-                    android:padding="4dp"
-                    android:background="@color/bg_color"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
-                />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="13:00"
-                    android:padding="4dp"
-                    android:background="@color/bg_color"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
-                />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:background="@color/light_bg"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                >
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="14:00"
-                    android:padding="4dp"
-                    android:background="@color/bg_color"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
-                />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="15:00"
-                    android:padding="4dp"
-                    android:background="@color/bg_color"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
-                />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="16:00"
-                    android:padding="4dp"
-                    android:background="@color/bg_color"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
-                />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="17:00"
-                    android:padding="4dp"
-                    android:background="@color/bg_color"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
-                />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="18:00"
-                    android:padding="4dp"
-                    android:background="@color/bg_color"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
-                />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="19:00"
-                    android:padding="4dp"
-                    android:background="@color/bg_color"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
-                />
-
-            </LinearLayout>
-
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:gravity="center"
-                android:background="@color/light_bg"
-                >
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:text="Đặt ngay"
-                    android:textColor="@color/black"
-                    android:textSize="20dp"
-                    android:background="@drawable/button"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
-                    />
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/content_container_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/content_container_1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:orientation="vertical"
-        android:layout_marginTop="20dp"
-        >
-
-        <TextView
-            android:id="@+id/room_name_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="P2.201"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:background="@color/light_bg"
-            app:layout_constraintTop_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
-
-        <LinearLayout
-            android:id="@+id/room_container_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/room_name_2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:orientation="horizontal"
-            >
-
-            <TextView
-                android:id="@+id/room_title_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Sức chứa"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:background="@color/light_bg"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/device_container_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/light_bg"
-            app:layout_constraintTop_toBottomOf="@+id/room_container_2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Thiết bị"
-                android:background="@color/light_bg"
-                android:textSize="20dp"
-                android:textColor="@color/black"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/device_container_2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:orientation="vertical"
-            >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:background="@color/light_bg"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                >
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="08:00"
-                    android:padding="4dp"
-                    android:background="@color/bg_color"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
- 
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="09:00"
-                    android:padding="4dp"
-                    android:background="@color/bg_color"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
- 
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="10:00"
-                    android:padding="4dp"
-                    android:background="@color/bg_color"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
- 
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="11:00"
-                    android:padding="4dp"
-                    android:background="@color/bg_color"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
- 
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="12:00"
-                    android:padding="4dp"
-                    android:background="@color/bg_color"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
- 
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="13:00"
-                    android:padding="4dp"
-                    android:background="@color/bg_color"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
- 
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:background="@color/light_bg"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                >
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="14:00"
-                    android:padding="4dp"
-                    android:background="@color/bg_color"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="15:00"
-                    android:padding="4dp"
-                    android:background="@color/bg_color"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="16:00"
-                    android:padding="4dp"
-                    android:background="@color/bg_color"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="17:00"
-                    android:padding="4dp"
-                    android:background="@color/bg_color"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="18:00"
-                    android:padding="4dp"
-                    android:background="@color/bg_color"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="19:00"
-                    android:padding="4dp"
-                    android:background="@color/bg_color"
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_margin="4dp"/>
-
-
-            </LinearLayout>
-
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:gravity="center"
-                android:background="@color/light_bg"
-                >
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:text="Đặt ngay"
-                    android:textColor="@color/black"
-                    android:textSize="20dp"
-                    android:background="@drawable/button"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
-                    />
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
