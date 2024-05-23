@@ -61,7 +61,7 @@ public class BookingActivity extends AppCompatActivity {
         recyclerListRoom = findViewById(R.id.listRoom);
         recyclerListRoom.setLayoutManager(linearLayoutManager);
         List<Room> rooms = new ArrayList<>();
-        adapter = new RoomAdapter(rooms, getApplicationContext());
+        adapter = new RoomAdapter(rooms, getApplicationContext(), null);
         recyclerListRoom.setAdapter(adapter);
 
         datePicker.init(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth(), new DatePicker.OnDateChangedListener() {
@@ -113,7 +113,7 @@ public class BookingActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
                         if(response.isSuccessful()){
-                            adapter = new RoomAdapter(response.body(), actContext);
+                            adapter = new RoomAdapter(response.body(), actContext, date);
                             recyclerListRoom.setAdapter(adapter);
                         }else{
                             Log.d( "onResponse: ", response.code()+"");
