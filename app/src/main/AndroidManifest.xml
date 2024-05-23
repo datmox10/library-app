@@ -51,7 +51,7 @@
             android:name=".activity.BookingActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.RoomBookingActivity"
+            android:name=".activity.BookingConfirmActivity"
             android:exported="false" />
         <activity
             android:name=".activity.ReadBookActivity"

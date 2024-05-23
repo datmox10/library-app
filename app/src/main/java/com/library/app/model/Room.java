@@ -7,7 +7,7 @@ public class Room {
     private String roomType;
     private List<String> equipment;
     private String location;
-    private int quantityAllowed;
+    private String quantityAllowed;
     private List<RoomTimeFrameResponse> roomTimeFrameStatus;
 
     public String getRoomCode() {
@@ -26,7 +26,7 @@ public class Room {
         return location;
     }
 
-    public int getQuantityAllowed() {
+    public String getQuantityAllowed() {
         return quantityAllowed;
     }
 
@@ -34,7 +34,7 @@ public class Room {
         return roomTimeFrameStatus;
     }
 
-    public Room(String roomCode, String roomType, List<String> equipment, String location, int quantityAllowed, List<RoomTimeFrameResponse> roomTimeFrameStatus) {
+    public Room(String roomCode, String roomType, List<String> equipment, String location, String quantityAllowed, List<RoomTimeFrameResponse> roomTimeFrameStatus) {
         this.roomCode = roomCode;
         this.roomType = roomType;
         this.equipment = equipment;
@@ -45,11 +45,11 @@ public class Room {
 
     public class RoomTimeFrameResponse{
         private String timeFrame;
-        private int startTime;
-        private int endTime;
-        private int status;
+        private String startTime;
+        private String endTime;
+        private String status;
 
-        public RoomTimeFrameResponse(String timeFrame, int startTime, int endTime, int status) {
+        public RoomTimeFrameResponse(String timeFrame, String startTime, String endTime, String status) {
             this.timeFrame = timeFrame;
             this.startTime = startTime;
             this.endTime = endTime;
@@ -64,27 +64,27 @@ public class Room {
             this.timeFrame = timeFrame;
         }
 
-        public int getStartTime() {
+        public String getStartTime() {
             return startTime;
         }
 
-        public void setStartTime(int startTime) {
+        public void setStartTime(String startTime) {
             this.startTime = startTime;
         }
 
-        public int getEndTime() {
+        public String getEndTime() {
             return endTime;
         }
 
-        public void setEndTime(int endTime) {
+        public void setEndTime(String endTime) {
             this.endTime = endTime;
         }
 
-        public int getStatus() {
+        public String getStatus() {
             return status;
         }
 
-        public void setStatus(int status) {
+        public void setStatus(String status) {
             this.status = status;
         }
     }
