@@ -8,6 +8,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +39,7 @@ public class BookingActivity extends AppCompatActivity {
     private RecyclerView recyclerListRoom;
     private RoomAdapter adapter;
     private LinearLayoutManager linearLayoutManager;
+    private Context actContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,8 @@ public class BookingActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        actContext = this;
 
         DatePicker datePicker = findViewById(R.id.datePicker);
         Button confirmButton = findViewById(R.id.confirm_button);
@@ -109,7 +113,7 @@ public class BookingActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
                         if(response.isSuccessful()){
-                            adapter = new RoomAdapter(response.body(), getApplicationContext());
+                            adapter = new RoomAdapter(response.body(), actContext);
                             recyclerListRoom.setAdapter(adapter);
                         }else{
                             Log.d( "onResponse: ", response.code()+"");

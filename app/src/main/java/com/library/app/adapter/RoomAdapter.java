@@ -33,7 +33,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
 
         this.rooms = rooms;
         this.context = context;
-        Log.d( "thisRoomLength: ", this.rooms.size()+"");
+        Log.d( "this context: ", this.context+"");
 
     }
     @NonNull
@@ -87,7 +87,10 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
                 public void onClick(View v) {
                     Intent intent = new Intent(context, BookingConfirmActivity.class);
                     Bundle bundle = new Bundle();
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    bundle.putString("roomCode", room_name.getText().toString());
+                    bundle.putString("roomCapable", room_capable.getText().toString());
+                    bundle.putString("roomDevice", device_container.getText().toString());
+                    intent.putExtras(bundle);
                     context.startActivity(intent);
                 }
             });
