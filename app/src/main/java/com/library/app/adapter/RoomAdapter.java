@@ -29,8 +29,6 @@ import java.util.List;
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder>{
     private List<Room> rooms;
     private Context context;
-    public Room.RoomTimeFrameResponse selectedTimeFrame;
-    public TextView selectingTextView;
     private Date pickedDate;
     public RoomAdapter(List<Room> rooms, Context context, Date date){
         Log.d( "onCreateAdapter: ", "Adapter created!");
@@ -73,8 +71,8 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
             }
         }
 
-        TimeFrameAdapter adapter1 = new TimeFrameAdapter(listTF_1, context, this);
-        TimeFrameAdapter adapter2 = new TimeFrameAdapter(listTF_2, context, this);
+        TimeFrameAdapter adapter1 = new TimeFrameAdapter(listTF_1, context, holder);
+        TimeFrameAdapter adapter2 = new TimeFrameAdapter(listTF_2, context, holder);
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(context, RecyclerView.HORIZONTAL,false);
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(context, RecyclerView.HORIZONTAL,false);
         holder.listTimeFrame1.setLayoutManager(linearLayoutManager1);
@@ -95,6 +93,8 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
         private TextView device_container;
         private RecyclerView listTimeFrame1, listTimeFrame2;
         private Button placeRoom_button;
+        public List<Room.RoomTimeFrameResponse> selectedTimeFrames = new ArrayList<>();
+
         public RoomViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -107,18 +107,33 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
 
             placeRoom_button = itemView.findViewById(R.id.place_room_button);
 
+
             placeRoom_button.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
-                    if (selectedTimeFrame == null) return;
+                    if (selectedTimeFrames.isEmpty()) return;
+
+                    ArrayList<String> timeFrames = new ArrayList<>();
+                    ArrayList<String> startTimes = new ArrayList<>();
+                    ArrayList<String> endTimes = new ArrayList<>();
+                    for(int i = 0; i < selectedTimeFrames.size(); i++){
+                        timeFrames.add(selectedTimeFrames.get(i).getTimeFrame());
+                        startTimes.add(selectedTimeFrames.get(i).getStartTime());
+                        endTimes.add(selectedTimeFrames.get(i).getEndTime());
+                    }
+
                     Intent intent = new Intent(context, BookingConfirmActivity.class);
                     Bundle bundle = new Bundle();
+
                     bundle.putString("roomCode", room_name.getText().toString());
                     bundle.putString("roomCapable", room_capable.getText().toString());
                     bundle.putString("roomDevice", device_container.getText().toString());
                     bundle.putString("date", pickedDate.toString());
-                    bundle.putString("startTime", selectedTimeFrame.getStartTime());
-                    bundle.putString("endTime", selectedTimeFrame.getEndTime());
+
+                    bundle.putStringArrayList("listTimeFrame", timeFrames);
+                    bundle.putStringArrayList("listStartTime", startTimes);
+                    bundle.putStringArrayList("listEndTime", endTimes);
+
                     intent.putExtras(bundle);
                     context.startActivity(intent);
                 }

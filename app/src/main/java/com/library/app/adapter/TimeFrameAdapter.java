@@ -20,18 +20,15 @@ import java.util.List;
 public class TimeFrameAdapter extends RecyclerView.Adapter<TimeFrameAdapter.TimeFrameViewHolder>{
     private List<Room.RoomTimeFrameResponse> listFrame;
     private Context context;
-    public RoomAdapter parentAdapter;
-    public TimeFrameAdapter(List<Room.RoomTimeFrameResponse> listTimeFrame, Context context, RoomAdapter adapter){
+    public RoomAdapter.RoomViewHolder parentViewHolder;
+    public TimeFrameAdapter(List<Room.RoomTimeFrameResponse> listTimeFrame, Context context, RoomAdapter.RoomViewHolder viewHolder){
         this.listFrame = listTimeFrame;
         this.context = context;
-        this.parentAdapter = adapter;
-        Log.d("Room TimeFrame", this.listFrame.size()+"");
-
+        this.parentViewHolder = viewHolder;
     }
     @NonNull
     @Override
     public TimeFrameViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.d("TimeHolder", "Create timeframe viewholder");
         View view = LayoutInflater.from(context).inflate(R.layout.item_timeframe,parent,false);
         return new TimeFrameAdapter.TimeFrameViewHolder(view);
     }
@@ -45,7 +42,6 @@ public class TimeFrameAdapter extends RecyclerView.Adapter<TimeFrameAdapter.Time
         }
 
         holder.timeLabel.setText(time.getStartTime()+":00");
-        Log.d("Is Equal", time.getStatus().equals("Available")+"");
         holder.timeLabel.setBackgroundColor(time.getStatus().equals("Available") ? Color.parseColor("#FFD188") : Color.parseColor("#d9d9d9"));
         holder.timeFrame = time;
     }
@@ -66,12 +62,13 @@ public class TimeFrameAdapter extends RecyclerView.Adapter<TimeFrameAdapter.Time
                 @Override
                 public void onClick(View v) {
                     if (!timeFrame.getStatus().equals("Available")) return;
-                    if (parentAdapter.selectingTextView != null){
-                        parentAdapter.selectingTextView.setBackgroundColor(Color.parseColor("#FFD188"));
+                    if (parentViewHolder.selectedTimeFrames.contains(timeFrame)){
+                        parentViewHolder.selectedTimeFrames.remove(timeFrame);
+                        timeLabel.setBackgroundColor(timeFrame.getStatus().equals("Available") ? Color.parseColor("#FFD188") : Color.parseColor("#d9d9d9"));
+                    }else{
+                        parentViewHolder.selectedTimeFrames.add(timeFrame);
+                        timeLabel.setBackgroundColor(Color.parseColor("#fd4e16"));
                     }
-                    parentAdapter.selectingTextView = timeLabel;
-                    parentAdapter.selectedTimeFrame = timeFrame;
-                    timeLabel.setBackgroundColor(Color.parseColor("#fd4e16"));
                 }
             });
         }

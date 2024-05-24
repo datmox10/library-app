@@ -3,8 +3,10 @@ package com.library.app.api;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.library.app.activity.LoginActivity;
+import com.library.app.dto.UserInfoResponse;
 import com.library.app.model.LoginRes;
 import com.library.app.model.MessRegister;
+import com.library.app.model.User;
 import com.library.app.model.UserLogin;
 import com.library.app.model.UserMD;
 
@@ -33,4 +35,5 @@ public interface LoginApiService {
     Call<LoginRes> login(@Body UserLogin userLogin);
     @POST("lib/v1/register")
     Call<MessRegister> register(@Body UserMD userMD);
+
 }
