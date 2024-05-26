@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.library.app.R;
 import com.library.app.activity.BookDetailActivity;
 import com.library.app.activity.BookingConfirmActivity;
+import com.library.app.activity.LoginActivity;
 import com.library.app.model.Book;
 import com.library.app.model.Room;
 
@@ -54,10 +56,12 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
 
         holder.room_name.setText(room.getRoomCode());
         holder.room_capable.setText(room.getQuantityAllowed());
-        String devices = "";
+        String devices = new String();
         for (int i = 0; i < room.getEquipment().size(); i++){
-            devices += room.getEquipment().get(i) +" ";
+            String item = room.getEquipment().get(i);
+            devices += item +" ";
         }
+        devices = devices.replace("\"", "");
         holder.device_container.setText(devices);
 
         Log.d( "timeFrame: ", room.getRoomTimeFrameStatus().get(0).getStatus()+"");
@@ -112,14 +116,26 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
                 @Override
                 public void onClick(View v) {
                     if (selectedTimeFrames.isEmpty()) return;
+                    if (selectedTimeFrames.size() > 2){
+                        Toast.makeText(context, "Không thể đặt nhiều hơn 2 khung giờ!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }else if(selectedTimeFrames.size() == 2){
+                        Room.RoomTimeFrameResponse timeFrame1 = selectedTimeFrames.get(0);
+                        Room.RoomTimeFrameResponse timeFrame2 = selectedTimeFrames.get(1);
+                        if (!timeFrame1.getStartTime().equals(timeFrame2.getEndTime())  && !timeFrame1.getEndTime().equals(timeFrame2.getStartTime())){
+                            Toast.makeText(context, "Chỉ có thể đặt 2 khung giờ liền nhau!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    }
+                    Room.RoomTimeFrameResponse timeFrame1 = selectedTimeFrames.get(0);
+                    Room.RoomTimeFrameResponse timeFrame2 = selectedTimeFrames.get(selectedTimeFrames.size() - 1);
+                    String startTime = timeFrame1.getEndTime().equals(timeFrame2.getStartTime()) ? timeFrame1.getStartTime() : timeFrame2.getStartTime();
+                    String endTime = timeFrame1.getEndTime().equals(timeFrame2.getStartTime()) ? timeFrame2.getEndTime() : timeFrame1.getEndTime();
 
                     ArrayList<String> timeFrames = new ArrayList<>();
-                    ArrayList<String> startTimes = new ArrayList<>();
-                    ArrayList<String> endTimes = new ArrayList<>();
+
                     for(int i = 0; i < selectedTimeFrames.size(); i++){
                         timeFrames.add(selectedTimeFrames.get(i).getTimeFrame());
-                        startTimes.add(selectedTimeFrames.get(i).getStartTime());
-                        endTimes.add(selectedTimeFrames.get(i).getEndTime());
                     }
 
                     Intent intent = new Intent(context, BookingConfirmActivity.class);
@@ -131,8 +147,8 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
                     bundle.putString("date", pickedDate.toString());
 
                     bundle.putStringArrayList("listTimeFrame", timeFrames);
-                    bundle.putStringArrayList("listStartTime", startTimes);
-                    bundle.putStringArrayList("listEndTime", endTimes);
+                    bundle.putString("startTime", startTime);
+                    bundle.putString("endTime", endTime);
 
                     intent.putExtras(bundle);
                     context.startActivity(intent);

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/room_booked_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -8,27 +9,27 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="P3.302"
         android:drawableEnd="@drawable/divider_table_cell"
-        />
+        android:padding="10dp"
+        android:text="P3.302"
+        android:textAlignment="center" />
 
     <TextView
         android:id="@+id/room_time_item"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Thứ ba,24/01/2023"
         android:drawableEnd="@drawable/divider_table_cell"
-        />
+        android:text="Thứ ba,24/01/2023"
+        android:textAlignment="center" />
 
     <TextView
         android:id="@+id/room_info_item"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Văn Nam"/>
-
-
+        android:text="Văn Nam"
+        android:textAlignment="center" />
 
 
 </LinearLayout>

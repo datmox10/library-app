@@ -3,8 +3,11 @@ package com.library.app.api;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
+import com.library.app.dto.RoomBookingCancelResponse;
 import com.library.app.dto.RoomBookingRequest;
 import com.library.app.dto.RoomBookingResponse;
+import com.library.app.dto.RoomDetailResponse;
+import com.library.app.dto.RoomsBookedHistoryResponse;
 import com.library.app.dto.RoomsInDateResponse;
 import com.library.app.model.Room;
 
@@ -42,6 +45,15 @@ public class ApiRoomClass {
 
         @POST("api/booking/room/checkout")
         Call<RoomBookingResponse> checkoutBooking(@Body RoomBookingRequest request);
+
+        @GET("api/booking/room/detail")
+        Call<RoomDetailResponse> getDetail(@Query("booking_id") String booking_id);
+
+        @GET("api/booking/room/cancel")
+        Call<RoomBookingCancelResponse> cancelBooking(@Query("booking_id") String booking_id);
+        @GET("api/booking/room/list-booked")
+        Call<RoomsBookedHistoryResponse> getBookingHistory(@Query("user_id") String user_id);
+
     }
     public Retrofit getRetrofitInstance() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();

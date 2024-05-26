@@ -54,6 +54,12 @@
             android:name=".activity.BookingConfirmActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.RoomBookingHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.RoomBookingDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.ReadBookActivity"
             android:exported="false" />
         <activity
