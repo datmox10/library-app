@@ -19,6 +19,7 @@ import com.library.app.activity.BookingActivity;
 import com.library.app.activity.BorrowHistoryActivity;
 import com.library.app.activity.FavouriteActivity;
 import com.library.app.activity.LoginActivity;
+import com.library.app.activity.RoomBookingHistoryActivity;
 import com.library.app.api.ApiBook;
 import com.library.app.model.TokenManager;
 import com.library.app.model.UserMD;
@@ -107,7 +108,7 @@ public class UserFragment extends Fragment {
         user_booking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(BookingActivity.class);
+                startActivity(RoomBookingHistoryActivity.class);
             }
         });
     }

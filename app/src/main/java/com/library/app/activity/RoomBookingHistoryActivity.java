@@ -19,7 +19,9 @@ import com.library.app.R;
 import com.library.app.adapter.RoomAdapter;
 import com.library.app.adapter.RoomHistoryAdapter;
 import com.library.app.api.ApiRoomClass;
+import com.library.app.api.ApiUser;
 import com.library.app.dto.RoomsBookedHistoryResponse;
+import com.library.app.dto.UserInfoResponse;
 import com.library.app.model.Room;
 import com.library.app.model.TokenManager;
 
@@ -61,12 +63,24 @@ public class RoomBookingHistoryActivity extends AppCompatActivity {
         adapter = new RoomHistoryAdapter(rooms, getApplicationContext(), null);
         recyclerListRoom.setAdapter(adapter);
 
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null){
-            String userID = bundle.getString("user_id");
-            String userName = bundle.getString("userName");
-            getData(userID, userName);
-        }
+        ApiUser apiUser = new ApiUser(TokenManager.getInstance(this).getToken());
+        ApiUser.ApiUserInterface apiUserInterface = apiUser.getRetrofitInstance().create(ApiUser.ApiUserInterface.class);
+        Call<UserInfoResponse> call = apiUserInterface.getUser();
+        call.enqueue(new Callback<UserInfoResponse>(){
+            @Override
+            public void onResponse(Call<UserInfoResponse> call, Response<UserInfoResponse> response) {
+                Log.d( "onResponse: ",response.code()+"");
+                Log.d( "userName: ",response.body().getFullName());
+                String userID = response.body().getId();
+                String userName = response.body().getFullName();
+                getData(userID, userName);
+            }
+
+            @Override
+            public void onFailure(Call<UserInfoResponse> call, Throwable throwable) {
+                Log.d( "onFailure: ","Lỗi");
+            }
+        });
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
