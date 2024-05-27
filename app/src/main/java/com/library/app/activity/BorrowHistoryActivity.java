@@ -8,8 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -49,8 +47,6 @@ public class BorrowHistoryActivity extends AppCompatActivity {
     private BorrowAdapter borrowAdapter;
 
     private TokenManager tokenManager;
-    private RelativeLayout returnLayout;
-    private ImageView imageView;
 
 
     @Override
@@ -85,8 +81,6 @@ public class BorrowHistoryActivity extends AppCompatActivity {
     private void anhXa(){
         toolbar = (Toolbar) findViewById(R.id.toolbar_return);
         recyclerView = (RecyclerView) findViewById(R.id.rcyc_return);
-        returnLayout =(RelativeLayout) findViewById(R.id.return_layout);
-        imageView = (ImageView) findViewById(R.id.qrCodeImageView);
     }
 
 
@@ -105,7 +99,7 @@ public class BorrowHistoryActivity extends AppCompatActivity {
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplication(),RecyclerView.VERTICAL,false);
                     recyclerView.setLayoutManager(linearLayoutManager);
 
-                    borrowAdapter = new BorrowAdapter(books,getApplication(),returnLayout,imageView);
+                    borrowAdapter = new BorrowAdapter(books,getApplication());
                     recyclerView.setAdapter(borrowAdapter);
                 }else{
                     Log.d( "history: ", String.valueOf(response.code()));

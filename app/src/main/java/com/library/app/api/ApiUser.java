@@ -1,15 +1,14 @@
 package com.library.app.api;
 
-import com.library.app.model.Book;
-import com.library.app.model.BookResponse;
-import com.library.app.model.BorrowBook;
-import com.library.app.model.BorrowBookResponse;
-import com.library.app.model.BorrowResponse;
-import com.library.app.model.ReturnBook;
-import com.library.app.model.UserLogin;
-import com.library.app.model.UserMD;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.library.app.dto.RoomBookingRequest;
+import com.library.app.dto.RoomBookingResponse;
+import com.library.app.dto.UserInfoResponse;
+import com.library.app.model.Room;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 import okhttp3.Interceptor;
@@ -22,44 +21,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public class ApiBook {
+public class ApiUser {
     private static final String BASE_URL = "http://10.0.2.2:8081/";
     private String token;
-
-    public ApiBook(String token) {
+    public ApiUser(String token) {
         this.token = token;
     }
+    public interface ApiUserInterface{
+        @GET("lib/v1/auth/user")
+        Call<UserInfoResponse> getUser();
 
-    public String getToken() {
-        return token;
     }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public interface MyApi {
-            @GET("lib/v1/book?page=0&size=5&sort=id,asc")
-            Call<BookResponse> getData();
-
-            @GET("lib/v1/book/{id}")
-            Call<Book> getBookDetail(@Path("id") String id);
-            @GET("lib/v1/auth/user")
-            Call<UserMD> getUser();
-
-            @POST("lib/v1/book-return/borrow")
-            Call<BorrowResponse> borrowBook(@Body BorrowBook borrowBook);
-
-            @GET("lib/v1/book-return/borrow-history")
-            Call<BorrowBookResponse> getBorrowHistory();
-
-            @POST("lib/v1/return-book")
-            Call<BorrowResponse> returnBook(@Body ReturnBook returnBook);
-    }
-
     public Retrofit getRetrofitInstance() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         httpClient.addInterceptor(new Interceptor() {

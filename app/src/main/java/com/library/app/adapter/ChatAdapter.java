@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.library.app.R;
 import com.library.app.model.MessagesChat;
 
-import java.util.Date;
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder> {
@@ -36,17 +35,14 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     @Override
     public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
         MessagesChat messagesChat = messagesChatList.get(position);
-        Date date = new Date();
         if(messagesChat.getSend_id() == 0 ){
             holder.layout2.setVisibility(View.VISIBLE);
             holder.layout1.setVisibility(View.GONE);
-            holder.textRight.setText(messagesChat.getContent()+ ' ');
-            holder.time_rq.setText( date +"");
+            holder.textRight.setText(messagesChat.getContent()+ ' '+messagesChat.getTimeRq());
         }else{
             holder.layout2.setVisibility(View.GONE);
             holder.layout1.setVisibility(View.VISIBLE);
-            holder.textLeft.setText(messagesChat.getContent()+ ' ');
-            holder.time_rq.setText(date+"");
+            holder.textLeft.setText(messagesChat.getContent()+ ' '+messagesChat.getTimeRq());
         }
     }
 
@@ -57,7 +53,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 
     public class ChatViewHolder extends RecyclerView.ViewHolder {
         private LinearLayout layout1, layout2;
-        private TextView textLeft,textRight,time_rq;
+        private TextView textLeft,textRight;
 
         public ChatViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -65,7 +61,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
             layout2= itemView.findViewById(R.id.layout2);
             textLeft = itemView.findViewById(R.id.txt_chat_left);
             textRight = itemView.findViewById(R.id.txt_chat_right);
-            time_rq = itemView.findViewById(R.id.time_rq);
         }
     }
 }
