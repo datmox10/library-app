@@ -26,7 +26,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public class ApiBook {
-    private static final String BASE_URL = "http://10.0.2.2:8081/";
+    private static final String BASE_URL = "https://librarybackend-production.up.railway.app/";
     private String token;
 
     public ApiBook(String token) {
