@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -16,9 +17,12 @@ import android.widget.TextView;
 
 import com.library.app.R;
 import com.library.app.activity.BookingActivity;
+import com.library.app.activity.BorrowBookHistoryActivity;
 import com.library.app.activity.BorrowHistoryActivity;
+import com.library.app.activity.CategoryByClassify;
 import com.library.app.activity.FavouriteActivity;
 import com.library.app.activity.LoginActivity;
+import com.library.app.activity.RoomBookingActivity;
 import com.library.app.api.ApiBook;
 import com.library.app.model.TokenManager;
 import com.library.app.model.UserMD;

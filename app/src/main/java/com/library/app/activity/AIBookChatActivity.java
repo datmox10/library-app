@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -40,6 +41,7 @@ public class AIBookChatActivity extends AppCompatActivity {
     private ChatAdapter chatAdapter;
     private List<MessagesChat> messagesChatList;
     private String sessionChat;
+    private Observer<ConversationResponse> currentObserver;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     private BookAIChatModel bookAIChatModel;
     
@@ -69,7 +71,6 @@ public class AIBookChatActivity extends AppCompatActivity {
     private void initControll() {
         btn.setOnClickListener(v -> {
             String ques = editText.getText().toString().trim();
-            addQuesToRecycle(ques, 0);
             editText.setText("");
             postData(ques);
         });
@@ -77,7 +78,7 @@ public class AIBookChatActivity extends AppCompatActivity {
 
     public void postData(String ques) {
         if (bookAIChatModel != null) {
-            Log.d( "postData: ",ques);
+
             ConversationRequest request = new ConversationRequest();
             request.setConversation(ques);
             request.setSessionChat(this.sessionChat);
@@ -85,17 +86,41 @@ public class AIBookChatActivity extends AppCompatActivity {
 
             LiveData<ConversationResponse> responseLiveData = bookAIChatModel.getQuestion(request);
             if (responseLiveData != null) {
-                responseLiveData.observe(this, conversationResponse -> {
-                    if (conversationResponse != null) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                addQuesToRecycle(conversationResponse.message, 1);
-                                Log.d("run: ",conversationResponse.message);
-                            }
-                        });
+                Log.d("postData", "responseLiveData is not null");
+
+                Observer<ConversationResponse> observer = new Observer<ConversationResponse>() {
+                    @Override
+                    public void onChanged(ConversationResponse conversationResponse) {
+                        if (conversationResponse != null) {
+                            Log.d("postData", "Received new response: " + conversationResponse.message);
+                            addQuesToRecycle(conversationResponse.message, 1);
+                        }
                     }
-                });
+                };
+
+                // Hủy bỏ observer cũ nếu có
+                if (currentObserver != null) {
+                    responseLiveData.removeObserver(currentObserver);
+                }
+
+                // Đăng ký observer mới
+                currentObserver = observer;
+                responseLiveData.observe(this, observer);
+
+//                responseLiveData.observe(this, conversationResponse -> {
+//                    if (conversationResponse != null) {
+//                        runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                addQuesToRecycle(conversationResponse.message, 1);
+//                                Log.d( "postData: ",ques);
+//                                Log.d("run: ",conversationResponse.message);
+//                            }
+//                        });
+//                    }
+//                });
+
+
             } else {
                 // Xử lý trường hợp responseLiveData là null
                 System.out.println("data response live null");
@@ -138,6 +163,15 @@ public class AIBookChatActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) // Press Back Icon
+        {
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();

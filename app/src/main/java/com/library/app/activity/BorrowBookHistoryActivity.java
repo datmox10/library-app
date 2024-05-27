@@ -76,11 +76,7 @@ public class BorrowBookHistoryActivity extends AppCompatActivity {
         borrowBookMDS.add(borrowBookMD1);
         borrowBookMDS.add(borrowBookMD2);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplication(),3);
-        recyclerView.setLayoutManager(gridLayoutManager);
 
-        borrowAdapter = new BorrowAdapter(borrowBookMDS,getApplication());
-        recyclerView.setAdapter(borrowAdapter);
     }
 
     private void getData(){

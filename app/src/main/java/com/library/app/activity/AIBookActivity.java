@@ -25,6 +25,8 @@ import com.library.app.repository.remote.RemoteBookTrainingRepository;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+
 public class AIBookActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
@@ -33,6 +35,7 @@ public class AIBookActivity extends AppCompatActivity {
 
     private AIBookAdapter aiBookAdapter;
     private BookViewTrainingModel bookViewTrainingModel;
+
     private final Observer<List<BookTrainingResponse>> booksObserver = bookTrainingResponses -> {
         if (bookTrainingResponses != null) {
             getBook(bookTrainingResponses);
@@ -49,33 +52,16 @@ public class AIBookActivity extends AppCompatActivity {
         AnhXa();
         String name = "Hỏi đáp AI";
         setToolbar(toolbar, name);
-
         bookViewTrainingModel.getBookListLiveData().observe(this, booksObserver);
     }
 
-    public void setToolbar(Toolbar toolbar, String name) {
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle(name);
-        }
 
-    }
 
     private void AnhXa() {
-        toolbar = findViewById(R.id.toolbar_category);
+        toolbar = findViewById(R.id.toolbar_aibook);
         rcycCategory = findViewById(R.id.rcyc_category);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     private void getBook(List<BookTrainingResponse> books) {
         try {
@@ -85,6 +71,8 @@ public class AIBookActivity extends AppCompatActivity {
                 Sach sach = new Sach();
                 sach.setNhanDeChinh(book.bookName);
                 sach.setSoISBN(String.valueOf(book.sessionChat));
+                sach.setTacGia(book.getAuthor());
+                sach.setAnh(book.getImage());
                 sachs.add(sach);
             });
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
@@ -95,4 +83,22 @@ public class AIBookActivity extends AppCompatActivity {
             ex.printStackTrace();
         }
     }
+    public void setToolbar(Toolbar toolbar, String name) {
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle(name);
+        }
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

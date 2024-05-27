@@ -28,7 +28,7 @@ public class SplashActivity extends AppCompatActivity {
                     mySharedPreferences.putBooleanValue(KEY_FIRST_INSTALL,true);
                 }
             }
-        },2000);
+        },100);
     }
 
     private void startActivity(Class<?> cls){

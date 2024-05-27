@@ -76,7 +76,6 @@ public class BookDetailActivity extends AppCompatActivity {
                         Intent intent = new Intent(BookDetailActivity.this, FavouriteActivity.class);
                         intent.putExtra("id",id);
                         startActivity(intent);
-
                     }
                 },2000);
             }
