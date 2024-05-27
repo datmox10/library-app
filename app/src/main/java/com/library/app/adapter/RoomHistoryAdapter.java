@@ -50,6 +50,9 @@ public class RoomHistoryAdapter extends RecyclerView.Adapter<RoomHistoryAdapter.
         if(room == null){
             return;
         }
+        if (room.getStatus().equals("REJECT")){
+            return;
+        }
 
         RoomsBookedHistoryResponse.RoomBookDetailResponse firstRoom = room.getRoomBookDetailResponse().stream().findFirst().get();
         holder.roomCode.setText(firstRoom.getRoomResponse().getRoomCode());

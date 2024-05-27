@@ -37,6 +37,10 @@ public class RoomsBookedHistoryResponse {
         public String getDateBook() {
             return dateBook;
         }
+
+        public String getStatus() {
+            return status;
+        }
     }
 
     public static class RoomBookDetailResponse {
