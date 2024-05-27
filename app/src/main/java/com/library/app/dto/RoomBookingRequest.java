@@ -22,12 +22,5 @@ public class RoomBookingRequest {
         this.dateBook = dateBook;
         this.reason = reason;
         this.quantity = quantity;
-
-        Log.d("RoomCode:", roomCode);
-        Log.d("timeFrames length:", timeFrames.size()+"");
-        Log.d("userCode:", userCode);
-        Log.d("date:", dateBook.toString());
-        Log.d("reason:", reason);
-        Log.d("quantity:", quantity+"");
     }
 }

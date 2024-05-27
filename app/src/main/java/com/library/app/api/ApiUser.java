@@ -24,7 +24,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public class ApiUser {
-    private static final String BASE_URL = "http://10.0.2.2:8081/";
+    private static final String BASE_URL = "https://librarybackend-production.up.railway.app/";
     private String token;
     public ApiUser(String token) {
         this.token = token;

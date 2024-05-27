@@ -4,19 +4,25 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.library.app.R;
 import com.library.app.activity.MainActivity;
 import com.library.app.api.ApiBook;
@@ -46,12 +52,16 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
 
     private ArrayList<BorrowBookMD> borrowBookMDS;
     private Context context;
+    private RelativeLayout relativeLayout;
+    private ImageView imageView;
 
     private TokenManager tokenManager= TokenManager.getInstance(context);
 
-    public BorrowAdapter(ArrayList<BorrowBookMD> borrowBookMDS, Context context) {
+    public BorrowAdapter(ArrayList<BorrowBookMD> borrowBookMDS, Context context,RelativeLayout relativeLayout,ImageView imageView) {
         this.borrowBookMDS = borrowBookMDS;
         this.context = context;
+        this.relativeLayout = relativeLayout;
+        this.imageView = imageView;
     }
 
     @NonNull
@@ -96,31 +106,54 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
             holder.btn_return.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                     relativeLayout.setVisibility(View.VISIBLE);
 
-                    ApiBook apiBook = new ApiBook(tokenManager.getToken());
-                    ApiBook.MyApi myApi = apiBook.getRetrofitInstance().create(ApiBook.MyApi.class);
-                    Call<BorrowResponse> call = myApi.returnBook(returnBook1);
-                    call.enqueue(new Callback<BorrowResponse>() {
-                        @Override
-                        public void onResponse(Call<BorrowResponse> call, Response<BorrowResponse> response) {
-                            if(response.isSuccessful()){
-                                Toast.makeText(context, "Trả thành công!", Toast.LENGTH_SHORT).show();
-                                new Handler().postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        startActivity(MainActivity.class);
-                                    }
-                                },2000);
-                            }else{
-                                Log.d( "onResponse: ",response.code()+"");
-                            }
-                        }
+                    String qrText = borrowBookMD.getId();
+                    Log.d("qrText: ",qrText);
+                    try {
+                        BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+                        Bitmap bitmap = barcodeEncoder.encodeBitmap(qrText, BarcodeFormat.QR_CODE, 400, 400);
+                        imageView.setImageBitmap(bitmap);
+                    } catch (WriterException e) {
+                        e.printStackTrace();
+                    }
 
-                        @Override
-                        public void onFailure(Call<BorrowResponse> call, Throwable throwable) {
-                            Log.d( "onResponse: ",throwable.toString());
-                        }
-                    });
+
+                }
+            });
+            relativeLayout.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if(relativeLayout.getVisibility()==View.VISIBLE){
+                        relativeLayout.setVisibility(View.GONE);
+                        //                    ApiBook apiBook = new ApiBook(tokenManager.getToken());
+//                    ApiBook.MyApi myApi = apiBook.getRetrofitInstance().create(ApiBook.MyApi.class);
+//                    Call<BorrowResponse> call = myApi.returnBook(returnBook1);
+//                    call.enqueue(new Callback<BorrowResponse>() {
+//                        @Override
+//                        public void onResponse(Call<BorrowResponse> call, Response<BorrowResponse> response) {
+//                            if(response.isSuccessful()){
+//                                Toast.makeText(context, "Trả thành công!", Toast.LENGTH_SHORT).show();
+//                                new Handler().postDelayed(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        startActivity(MainActivity.class);
+//                                    }
+//                                },2000);
+//                            }else{
+//                                Log.d( "onResponse: ",response.code()+"");
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<BorrowResponse> call, Throwable throwable) {
+//                            Log.d( "onResponse: ",throwable.toString());
+//                        }
+//                    });
+
+                    }
+
+                    return false;
                 }
             });
 
@@ -186,4 +219,8 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
         context.startActivity(intent);
         ((Activity)context).finish();
     }
+
+
+
+
 }

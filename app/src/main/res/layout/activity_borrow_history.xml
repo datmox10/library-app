@@ -17,4 +17,21 @@
         android:id="@+id/rcyc_return"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    <RelativeLayout
+        android:id="@+id/return_layout"
+        android:layout_width="match_parent"
+        android:background="@color/opacoty"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_centerInParent="true">
+        <ImageView
+            android:padding="10dp"
+            android:id="@+id/qrCodeImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:contentDescription="QR Code"
+            android:src="@drawable/yeuthich"/>
+    </RelativeLayout>
 </LinearLayout>
